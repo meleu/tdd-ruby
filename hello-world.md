@@ -44,7 +44,7 @@ I'd like to call your attention to the fact that the code above has a lot of par
 
 In Ruby the use of these parentheses are usually optional. They may be required to clear up what may otherwise be ambiguous in the syntax, but in simple cases the Ruby programmers usually omit them.
 
-Let's code like a real Rubyist, then let's clear the unnecessary parentheses from our code:
+Let's code like a real Rubyist and clear the unnecessary parentheses from our code:
 
 ```ruby
 def hello
@@ -434,7 +434,7 @@ ArgumentError: wrong number of arguments (given 0, expected 1..2)
 
 😱 Our change broke all tests!!!
 
-Always keep this in mind: if your change breaks tests that are unrelated to your current work and that were previously succeeding, you're probably doing something wrong!
+Always keep this in mind: if your change breaks tests that are unrelated to your current work, you're probably doing something wrong!
 
 Tests are a safety net that brings confidence to change the code with no fear. If tests fail because you've broken the code, the cure is simple: undo the last change and make a better one.
 

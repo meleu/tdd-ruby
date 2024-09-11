@@ -1,2 +1,3 @@
-# tdd-ruby
-Learn TDD with Ruby
+# Learn TDD with Ruby
+
+Work in progress...
