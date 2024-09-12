@@ -13,11 +13,11 @@ The object-oriented approach combined with the dynamic type system make Ruby a p
 
 ## Integer to Binary Converter
 
-The [binary numeral system](https://simple.wikipedia.org/wiki/Binary_number) is a way to write numbers using only two digits: `0` and `1`. As we only need two digits, it's said that the binary is a *base two* number system.
+The [binary numeral system](https://simple.wikipedia.org/wiki/Binary_number) is a way to write numbers using only two digits: `0` and `1`. As it only needs two digits, we can say it's a *base two* number system.
 
 For computers the binary system is extremely efficient because they need to store information in only two simple different states: "on" or "off" (`1` or `0`). Sets of binary numbers can be used to represent any information, such as text, audio, or video.
 
-For the code we're going to work on this chapter I'm assuming you at least know what is a binary number and that it's a *base two* number system (uses only two digits to represent the possible values).
+For the code we're going to work on this chapter I'm assuming you at least know what a binary number is and that it's a *base two* number system (uses only two digits to represent the possible values).
 
 You don't need to know the math needed to convert a decimal number to binary notation (Ruby has convenient ways to do it). But I'm assuming you know that the binary `1001` is not one thousand and one (you don't even need to know that it's nine).
 
@@ -69,7 +69,7 @@ Let's run this test and see it failing.
 
 When we run the tests, check the error and write the minimal amount of code to fix the error, we're letting the tests guide our development. That's a core concept of Test-Driven Development.
 
-So let's start the cycle of checking the test failure message and trying to solve what the message says.
+So let's start the cycle of checking the test error message and trying to solve what the message says.
 
 In the very first run we see:
 
@@ -186,7 +186,7 @@ Expected: "10"
 2 runs, 2 assertions, 1 failures, 0 errors, 0 skips
 ```
 
-If our pedantic instincts evolve to the point where we want to be a prick, we could add an if in our code just to answer with `"1"` when the argument is `2`. But that feels like [a game of cat and mouse](https://en.m.wikipedia.org/wiki/Cat_and_mouse).
+If our pedantic instincts evolve to the point where we want to be a prick, we could add an if in our code just to answer with `"10"` when the argument is `2`. But that feels like [a game of cat and mouse](https://en.m.wikipedia.org/wiki/Cat_and_mouse).
 
 Let's stop here and start to work on the code that will actually convert an integer to its binary representation.
 
@@ -213,7 +213,7 @@ Here's one of our great friends: <https://ruby-doc.org/>
 
 As we want to work on Integers, we need to check the documentation about the Integer class: <https://ruby-doc.org/current/Integer.html>
 
-In that page we can see a pretty decent amount of information about Integers, including what they can do. In other words, which methods they have.
+In that page we can see a pretty decent amount of information about Integers.Iincluding what they can do, in other words, which methods they have.
 
 We don't need to read all that page, but use it as a reference when needed. As we are suspecting the `Integer#to_s` can help us, now is a good momento to use it. So let's take a look at [its documentation](https://ruby-doc.org/current/Integer.html#method-i-to_s) (below I bring only the part related to our problem):
 
@@ -351,7 +351,7 @@ integer: 7
 
 😳 How could this happen? We used TDD to code our function and it passed the tests!
 
-That's time to tell you a truth Test-Driven Development: TDD is not a way to *assure* your code does not have bugs.
+That's time to tell you a truth about Test-Driven Development: TDD is not a way to *assure* your code does not have bugs.
 
 TDD is a way to facilitate and guide development, giving you short feedback loops (as you don't need to test your software manually) and lead your implementation to a better design.
 
@@ -359,7 +359,7 @@ Although TDD can reduce *a lot* the appearance of bugs, *making sure* your code 
 
 ### Debugging with `irb`
 
-Alright, after this kinda frustrating news, let's try to understand what's wrong on our code. Check the main part of the error message:
+After this kinda frustrating news, let's try to understand what's wrong on our code. Check the main part of the error message:
 
 ```
 /path/to/int2bin.rb:2:in `to_s': wrong number of arguments (given 1, expected 0) (ArgumentError)
@@ -412,7 +412,7 @@ irb(main):001:0> number
 => "7\n"
 ```
 
-👀 That's a String composed of a character `7` followed by a newline. That means that our `int2bin` was called with a String as an argument!
+👀 That's a String composed of a character `7` followed by a newline. That means that our `int2bin` function was called with a String as an argument!
 
 Let's check our `i2b` again, adding some notes:
 
@@ -428,7 +428,7 @@ binary = int2bin(my_number) # 👈 int2bin IS CALLED HERE
 puts "binary: #{binary}"
 ```
 
-We're assigning a value to `my_number` with `gets`, which returns the user's input as a String. When we pass this string to `#int2bin` it calls `String#to_s` instead of `Integer#to_s`. If we check the [String#to_s documentation](https://ruby-doc.org/current/String.html#method-i-to_s), we'll see that it doesn't accept an argument. That's why our program is crashing!
+We're assigning a value to `my_number` with `gets`, which returns the user's input *as a String*. When we pass this string to `#int2bin` it calls `String#to_s` instead of `Integer#to_s`. And if we check the [String#to_s documentation](https://ruby-doc.org/current/String.html#method-i-to_s), we'll see that it doesn't accept an argument. That's why our program is crashing!
 
 This is an example of how Ruby's dynamism is a double-edged sword. It can be powerful and allow rapid development, but also requires extra attention. In this case the lack of type checking allowed us to pass an unexpected data type that crashed our application.
 
