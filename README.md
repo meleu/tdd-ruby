@@ -1,43 +1,60 @@
 # Learn Ruby with TDD
 
-⚠ **This is a work in progress!** ⚠
+⚠ **This is a work in progress by [meleu](https://meleu.dev/)!** ⚠
 
 This "book" is my attempt to teach idiomatic **Ruby** and **Test-Driven Development** (TDD).
 
-Since we'll talk about Ruby, it's inevitable that you'll also learn about **Object-Oriented programming** (OOP). And since we'll use TDD, you'll inevitably also learn about **good software design**.
+## Why?
+
+### Why Ruby?
+
+Because Ruby and Ruby on Rails offers an extremely productive ecosystem to quickly build a web product and put it alive.
+
+### Why TDD?
+
+There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD, but if you here reading these lines I believe you have some hope that it's a useful skill.
+
+Of course I'm on the side of those who believe that TDD is useful. I notice that **TDD promotes a better software design**. By using TDD you are encouraged to make your code testable, which means less coupled and easier to maintain. But instead of repeating all the good arguments already mentioned in the books and articles, I'm going to mention a new one:
+
+**In the current AI era TDD is more valuable than ever**.
+
+With AIs writing code much faster than humans, such activity becomes cheaper. This leads me to a conclusion that **the real value is less in the code, and more in the tests**. Your ability to convert real world requirements into runnable tests will make you more productive and an extremely valuable professional.
+
 
 ## What you should expect
 
-- Explore the Ruby language (and OOP) by writing tests.
+- Explore the Ruby language by writing tests.
 - **Get a solid grounding with TDD**.
 - Be confident that you'll be able to start writing robust, well-tested software in Ruby.
 
-The chapters are presented in a sequence where a new Ruby feature is introduced and used to solve a problem. And the implementation of the solution is always driven by tests, reinforcing the TDD cycle.
+The chapters are presented in a sequence where new Ruby features are introduced and used to create a program. The implementation is always driven by tests, reinforcing the TDD cycle.
 
-You'll notice such approach in the very first chapter, where we create a classic "Hello, world" program and gradually make it more sophisticated driven by tests. This approach continues in all chapters.
+Initially the cycle may seem tedious and monotonous, but as you progress through the book you'll see how productive it is to get instant feedback on your work.
 
-I have a belief that TDD leads to a better software design. By using TDD you naturally makes your software testable, and consequently make it less coupled and easier to maintain over time.
+You'll probably notice that the programs we'll code are really simple. That's intentional. The greatest value will be in the way we solve the problems. The tools we use, the tests we write, the way we organize our code...
+
+If I used "real world problems", I would need to spend words explaining the problem's domain and then talk about the techniques. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have to solve.
+
 
 ## Who this is for
 
 - People who are interested in picking up Ruby.
 - People who already know some Ruby but want to explore testing more.
 
-I assume you have some experience with coding (any language) and understand the basic concepts of algorithms.
+I assume you already wrote some code (any language) and understand the basic concepts of algorithms.
 
 It's also expected that you're comfortable using the terminal (or at least not scared to use it).
+
+Basic knowledge of git is helpful, but not mandatory.
 
 ## What you'll need
 
 - A computer
-- Installed Ruby (3.2+)
+- A Unix-like operating system (Linux, MacOS or Windows with WSL)
+- Installed Ruby (3.1+)
+- Installed git
 - A text editor
 - A terminal
-
-> TODO: add Ruby installation instructions.
-
-For testing we're going to use Minitest, which is the testing framework that comes with the Ruby Standard Library.
-
 
 ## Feedback
 

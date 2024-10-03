@@ -5,7 +5,14 @@ It is traditional for your first program in a new language to be [Hello, World](
 Open your terminal and create a `hello` directory:
 
 ```bash
+# the env var we created in the previous chapter
+cd $TDD_RUBY_PATH
+
+# create the directory
 mkdir hello
+
+# go into the directory
+cd hello
 ```
 
 Create a new file called `hello.rb` and put the following code inside it:
@@ -16,7 +23,7 @@ puts("Hello, World")
 
 To run it type `ruby hello.rb` in your terminal.
 
-## How it works
+### How it works
 
 The `puts` instruction stands for "Put String", and what it does is to put the string you give to it in the output.
 
@@ -24,7 +31,11 @@ In our code we're giving the "Hello, World" string.
 
 ## How to test
 
-How do you test this program? It is good to separate your "domain" code from the outside world (side-effects). The `puts` is a side effect (printing to stdout), and the string we send in is our domain.
+How do you test this program?
+
+The answer for this question is our first example of how TDD promotes software design.
+
+To make our program testable it is good to separate our "domain" code from the outside world (side-effects). In our program the greeting string is our domain, and the `puts` is a side effect (printing to stdout).
 
 So, let's separate these concerns so it's easier to test:
 
@@ -165,7 +176,7 @@ class TestHello < Minitest::Test
 end
 ```
 
-Now run `ruby hello_test.rb` and you should see a failure like this:
+Now run `ruby hello_test.rb` and you should see an error like this:
 
 ```
 # Running:
@@ -241,16 +252,14 @@ Normally, as part of the TDD cycle, we should now _refactor_.
 
 ### A note on source control
 
-At this point, if you are using source control (which you should!) you should `commit` the code as it is. We have working software backed by a test.
-
-Example:
+At this point, we have working software backed by a test. It's a good time to commit our code:
 
 ```bash
 git add hello.rb hello_test.rb
-git commit -m 'hello-world, work in progress'
+git commit -m 'wip: hello-world'
 ```
 
-I _wouldn't_ push to main though, because I plan to refactor next. It is nice to commit at this point in case you somehow get into a mess with refactoring - you can always go back to the working version.
+Don't push to `main` though, we are going to refactor next. It is nice to commit at this point in case you somehow get into a mess with refactoring - you can always go back to the working version.
 
 ## Hello, world... again
 
@@ -328,13 +337,13 @@ It is important that your tests are _clear specifications_ of what the code need
 
 ### Back to source control
 
-Now that we are happy with the code, I would amend the previous commit so that we only check in the lovely version of our code with its test.
+Now that we are happy with the code, let's amend the previous commit to check in the new version of our code with its test.
 
 Example:
 
 ```bash
 git add hello.rb hello_test.rb
-git commit --amend
+git commit --amend -m 'feat: TDDing hello world'
 ```
 
 ### Discipline
@@ -581,6 +590,15 @@ end
 ```
 
 Run the tests again and it should pass.
+
+### Source Control
+
+Let's commit what we've done so far:
+
+```bash
+git add hello.rb hello_test.rb
+git commit -m 'feat: multilingual hello world'
+```
 
 ### Olá, Hallo, Ciao, Konnichiwa
 
