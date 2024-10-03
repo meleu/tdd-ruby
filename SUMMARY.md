@@ -1,6 +1,6 @@
 # Table of Contents
 
-- [Learn TDD with Ruby](README.md)
+- [Learn Ruby with TDD](README.md)
 - [Ruby tooling](ruby-tooling.md)
 
 ## Fundamentals
