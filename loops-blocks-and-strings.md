@@ -555,7 +555,7 @@ git commit -m 'fix(banner): handle multiline text'
 
 The two first [Lehman's laws of software evolution](https://en.wikipedia.org/wiki/Lehman's_laws_of_software_evolution).
 
-> **Continuing Changee**: A system must be continually adapted or it becomes progressively less satisfactory.
+> **Continuing Change**: A system must be continually adapted or it becomes progressively less satisfactory.
 > 
 > **Increasing Complexity**: As a system evolves, its complexity increases unless work is done to maintain or reduce it.
 
