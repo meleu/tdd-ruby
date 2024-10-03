@@ -118,4 +118,5 @@ At this point you should have:
 - visited **and bookmarked** <https://docs.ruby-lang.org/>
 - understood that you should use snake_case
 - a text editor available
-- created the `TDD_RUBY_PATH` variable in your shell.
+- created the `TDD_RUBY_PATH` variable in your shell
+- initialized a local git repository
