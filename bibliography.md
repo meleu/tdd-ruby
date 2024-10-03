@@ -1,4 +1,4 @@
-This is an **incomplete** list of books and links I consulted and/or was inspired by to write this one.
+This is an **incomplete** list of books and links I consulted and/or was inspired by to write this book.
 
 - Learn Go with Tests, Chris James
 - The Well-Grounded Rubyist, 3rd edition
