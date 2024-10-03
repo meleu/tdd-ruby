@@ -8,17 +8,20 @@ This "book" is my attempt to teach idiomatic **Ruby** and **Test-Driven Developm
 
 ### Why Ruby?
 
-Because Ruby and Ruby on Rails offers an extremely productive ecosystem to quickly build a web product and put it alive.
+As mentioned in [ruby-lang front-page](https://www.ruby-lang.org/), "it has an elegant syntax that is natural to read and easy to write". And I agree with that.
+
+Also, Ruby (and Ruby on Rails) offers an extremely productive ecosystem where we can quickly build a product and put it online.
+
 
 ### Why TDD?
 
-There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD, but if you here reading these lines I believe you have some hope that it's a useful skill.
+There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD, but if you reading these lines here I believe you have some hope that it's a useful skill.
 
-Of course I'm on the side of those who believe that TDD is useful. I notice that **TDD promotes a better software design**. By using TDD you are encouraged to make your code testable, which means less coupled and easier to maintain. But instead of repeating all the good arguments already mentioned in the books and articles, I'm going to mention a new one:
+Of course I'm on the side of those who believe that TDD is useful. I notice that **TDD promotes a better software design**. By using TDD you are encouraged to make your code testable, which means less coupled and easier to maintain. But instead of repeating all the good arguments already mentioned in those books, I'm going to mention a new one:
 
 **In the current AI era TDD is more valuable than ever**.
 
-With AIs writing code much faster than humans, such activity becomes cheaper. This leads me to a conclusion that **the real value is less in the code, and more in the tests**. Your ability to convert real world requirements into runnable tests will make you more productive and an extremely valuable professional.
+With AIs writing code much faster than humans, such activity becomes cheaper. This leads me to a conclusion that **the real value is less in the code, and more in the tests**. Your ability to convert real world requirements into runnable tests will make you more productive and a valuable professional.
 
 
 ## What you should expect
@@ -33,7 +36,7 @@ Initially the cycle may seem tedious and monotonous, but as you progress through
 
 You'll probably notice that the programs we'll code are really simple. That's intentional. The greatest value will be in the way we solve the problems. The tools we use, the tests we write, the way we organize our code...
 
-If I used "real world problems", I would need to spend words explaining the problem's domain and then talk about the techniques. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have to solve.
+If I used "real world problems", I would need to spend words explaining the problem's domain and then talk about the techniques. That would be lengthy and confusing. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have to solve.
 
 
 ## Who this is for
