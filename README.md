@@ -8,14 +8,14 @@ This "book" is my attempt to teach idiomatic **Ruby** and **Test-Driven Developm
 
 ### Why Ruby?
 
-As mentioned in [ruby-lang front-page](https://www.ruby-lang.org/), "it has an elegant syntax that is natural to read and easy to write". And I agree with that.
+I agree with what's said in the [official Ruby website](https://www.ruby-lang.org/), "it has an elegant syntax that is natural to read and easy to write".
 
 Also, Ruby (and Ruby on Rails) offers an extremely productive ecosystem where we can quickly build a product and put it online.
 
 
 ### Why TDD?
 
-There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD, but if you reading these lines here I believe you have some hope that it's a useful skill.
+There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD. If you're reading this I believe you have some hope that it's a useful skill.
 
 Of course I'm on the side of those who believe that TDD is useful. I notice that **TDD promotes a better software design**. By using TDD you are encouraged to make your code testable, which means less coupled and easier to maintain. But instead of repeating all the good arguments already mentioned in those books, I'm going to mention a new one:
 
