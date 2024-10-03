@@ -505,8 +505,7 @@ Let's recap what we learned in this chapter.
 - OOP: everything in Ruby is an object
 - Dynamic typing: variables can change types at runtime
 - String representation: all objects have a `to_s` method.
-- It wasn't explicitly said but you probably noticed: the Rubyist way to write method names is using `snake_case`.
-- [Ruby documentation](https://docs.ruby-lang.org/): essential resource of information.
+- [Ruby documentation](https://docs.ruby-lang.org/) is an essential resource of information.
 - `irb`: quickly experiment Ruby code
 - `binding.irb` is a useful debugging technique
 - `p`: inspect the contents of a variable
