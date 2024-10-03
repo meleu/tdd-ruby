@@ -97,7 +97,7 @@ When we face an error, we should check the message and write the minimal amount 
 
 By doing this we're letting the tests guide our development. That's a core concept of Test-Driven Development.
 
-Back to the erro message:
+Back to the error message:
 
 ```
 $ ruby dec2bin_test.rb
