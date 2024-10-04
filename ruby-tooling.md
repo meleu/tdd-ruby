@@ -26,7 +26,7 @@ Bookmark this website: <https://docs.ruby-lang.org/>
 
 That's the official documentation website for the Ruby language.
 
-During this book we frequently check the documentation to see how to use a class an/or its method.
+During this book we frequently check the documentation to see how to use a class and its methods.
 
 One cool tip about using the official documentation is about how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you exactly to where you want. This notation is also frequently used in the Ruby literature.
 
@@ -46,7 +46,7 @@ $ irb
 irb(main):001:0> 
 ```
 
-If you see this, you're in the `irb` prompt. Here you can type Ruby code and see the results immediately.
+This is the `irb` prompt, where you can type Ruby code and immediately see the results.
 
 Just to experiment, let's try a "hello world":
 
@@ -67,7 +67,7 @@ To exit the `irb` just type `exit`:
 irb(main):002> exit
 ```
 
-**NOTE**: to make it easier to read, throughout the book the `irb` sessions will be presented omitting the verbose prompt and the return value as a comment, like here:
+**NOTE**: to make it easier to read, throughout the book the `irb` sessions will be presented omitting the verbose prompt, and the return value will appear as a comment, like here:
 
 ```ruby
 # IRB SESSION
@@ -96,7 +96,7 @@ If your editor has a "format on save" feature, I suggest to let it disabled (at 
 
 In order to keep our code in a centralized directory, where we can easily go to whenever we want, let's create an environment variable named `TDD_RUBY_PATH` with the full path to the directory we'll use to save our code.
 
-In my case, I used `${HOME}/src/tdd-ruby-code`, then I would declare the variable like this:
+In my case, I use `${HOME}/src/tdd-ruby-code`, then I would declare the variable like this:
 
 ```bash
 export TDD_RUBY_PATH="${HOME}/src/tdd-ruby-code"

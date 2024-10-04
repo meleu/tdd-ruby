@@ -321,7 +321,7 @@ Now we have a dilema:
 - `#hello` expects an argument so we can use `hello("meleu")`
 - we also want to be able to call `#hello` with no arguments and it should respond with `"Hello, world"`
 
-To achieve this we can define a default value for the `name` argument, like this:
+To solve this we can define a default value for the `name` argument, like this:
 
 ```ruby
 def hello(name = 'world')
