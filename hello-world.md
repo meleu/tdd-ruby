@@ -125,7 +125,7 @@ Just to check, try deliberately breaking the test by changing the `expected` str
 Writing a test with Minitest is like writing a method in a class, but with some "rules" (some of them are not actual strict rules)
 
 - The file should be named like `*_test.rb` (not mandatory, but a good practice)
-- The file do `require 'minitest/autorun'` so we can easily run it from the command line.
+- The file must `require 'minitest/autorun'` so we can run it from the command line.
 - The file must `require_relative 'hello'` so it can access the code being tested.
 - The test must be written in a subclass of `Minitest::Test` (don't worry if you still don't know what is a subclass)
 - The test method must start with `test_`
