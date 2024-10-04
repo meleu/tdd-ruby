@@ -8,16 +8,14 @@ This "book" is my attempt to teach idiomatic **Ruby** and **Test-Driven Developm
 
 ### Why Ruby?
 
-I agree with what's said in the [official Ruby website](https://www.ruby-lang.org/), "it has an elegant syntax that is natural to read and easy to write".
-
-Also, Ruby (and Ruby on Rails) offers an extremely productive ecosystem where we can quickly build a product and put it online.
+Ruby has an elegant syntax that is natural to read and easy to write. It offers an extremely productive ecosystem where we can quickly build a product and put it online.
 
 
 ### Why TDD?
 
-There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD. If you're reading this I believe you have some hope that it's a useful skill.
+There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD, but if you're reading this book I believe you have some hope that it's a useful skill.
 
-Of course I'm on the side of those who believe that TDD is useful. I notice that **TDD promotes a better software design**. By using TDD you are encouraged to make your code testable, which means less coupled and easier to maintain. But instead of repeating all the good arguments already mentioned in those books, I'm going to mention a new one:
+Of course I'm on the side of those who think that TDD is useful. I notice that **TDD promotes a better software design**. By using TDD you are encouraged to make your code testable, which means less coupled and easier to maintain. But instead of repeating all the good arguments already mentioned in those books, I'm going to mention a new one:
 
 **In the current AI era TDD is more valuable than ever**.
 
@@ -32,9 +30,9 @@ With AIs writing code much faster than humans, such activity becomes cheaper. Th
 
 The chapters are presented in a sequence where new Ruby features are introduced and used to create a program. The implementation is always driven by tests, reinforcing the TDD cycle.
 
-Initially the cycle may seem tedious and monotonous, but as you progress through the book you'll see how productive it is to get instant feedback on your work.
+Initially the cycle may seem tedious, but as you progress through the book you'll see how productive it is to get instant feedback on your work.
 
-You'll probably notice that the programs we'll code are really simple. That's intentional. The greatest value will be in the way we solve the problems. The tools we use, the tests we write, the way we organize our code...
+You'll notice that the programs we'll code are really simple. That's intentional. The greatest value will be in the way we solve the problems. The tools we use, the tests we write, the way we organize our code...
 
 If I used "real world problems", I would need to spend words explaining the problem's domain and then talk about the techniques. That would be lengthy and confusing. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have to solve.
 

@@ -15,7 +15,10 @@ The Ruby community has two main testing frameworks:
 - RSpec: a feature-rich testing framework that provides a Domain Specific Language for writing tests.
 - **Minitest**: a lightweight testing framework that provides utilities to write your tests using "pure Ruby"
 
-In this book we're going to use **Minitest**. It's the testing framework that comes with the Ruby Standard Library, therefore if you installed Ruby successfully, you already have Minitest.
+In this book we're going to use **Minitest**, for two reasons:
+
+1. it comes with the Ruby Standard Library.
+2. "it doesn’t reinvent anything that ruby already provides. This means you only have to learn ruby to use minitest" - (from [minitest's README](https://github.com/minitest/minitest?tab=readme-ov-file#description-))
 
 ## Ruby documentation
 
@@ -83,11 +86,11 @@ Throughout this book you'll see how Rubyists usually write their code. For now t
 
 ### Ruby Linter and Formatter
 
-[RuboCop](https://rubocop.org) is the most popular Ruby linter/formatter available. You can install it with:
+[RuboCop](https://rubocop.org) is the most popular Ruby linter/formatter available.
 
-```bash
-gem install rubocop
-```
+If you have RuboCop configured in your editor, you'll probably see some lint diagnostics while coding. Although those messages are useful, they can be a distraction when you're trying to learn Ruby for the first time. If you think they're distracting you, just ignore the messages during the first chapters. After you get more familiar with Ruby, you'll start to see the value of those warnings.
+
+If your editor has a "format on save" feature, I suggest to let it disabled (at least while working in the first chapters).
 
 ## Before we start...
 
