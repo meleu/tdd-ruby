@@ -6,8 +6,8 @@
 ## Fundamentals
 
 - [Hello, world](hello-world.md)
-- [Objects, Methods and Integers](objects-methods-and-integers.md)
-- [Loops, Blocks and Strings](loops-blocks-and-strings.md)
+- [Objects, Methods & Integers](objects-methods-and-integers.md)
+- [Loops, Blocks & Strings](loops-blocks-and-strings.md)
 
 ## Meta
 
