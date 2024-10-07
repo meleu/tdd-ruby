@@ -41,7 +41,7 @@ Now let's start our _Decimal to Binary Converter™_ project following the TDD c
 - Write enough code to make the test pass
 - Refactor
 
-## Write the test first
+### Write the test first
 
 We still have no idea about how to implement this converter, but by looking at the [Wikipedia page about binary numbers](https://simple.wikipedia.org/wiki/Binary_number) we can see a table with some equivalents. Here are some examples:
 
@@ -230,11 +230,11 @@ As our goal is to convert a decimal to its binary representation, and this repre
 
 ### The Integer#to_s method
 
-As we want to work on Integers, we need to check the documentation about the Integer class: <https://docs.ruby-lang.org/en/master/Integer.html>
+As we want to work on Integers, we need to check the documentation about the Integer class: <https://ruby-doc.org/current/Integer.html>
 
 In that page we can see a pretty decent amount of information about Integers, including what they can do (in other words, which methods they have).
 
-We don't need to read all that page, but use it as a reference when needed. As we are suspecting the `Integer#to_s` can help us, let's take a look at [its documentation](https://docs.ruby-lang.org/en/master/Integer.html#method-i-to_s) (below I bring only the part related to our problem):
+We don't need to read all that page, but use it as a reference when needed. As we are suspecting the `Integer#to_s` can help us, let's take a look at [its documentation](https://ruby-doc.org/current/Integer.html#method-i-to_s) (below I bring only the part related to our problem):
 
 > **to_s(base = 10) → string**
 >
@@ -412,7 +412,7 @@ irb(main):001:0>
 
 Now we're on the `irb` prompt, right before the point where the crash happened. How cool is that?! 🙂
 
-Once we're on the `irb` prompt we can run any Ruby code. An interesting way to inspect what's in a variable is by using [the `#p` method](https://docs.ruby-lang.org/en/master/Kernel.html#method-i-p). Let's use it to check what exactly is in the `number` variable:
+Once we're on the `irb` prompt we can run any Ruby code. An interesting way to inspect what's in a variable is by using [the `#p` method](https://ruby-doc.org/current/Kernel.html#method-i-p). Let's use it to check what exactly is in the `number` variable:
 
 ```ruby
 # IRB SESSION
@@ -438,7 +438,7 @@ binary = dec2bin(my_number) # 👈 dec2bin IS CALLED HERE
 puts "binary: #{binary}"
 ```
 
-We're assigning a value to `my_number` with `gets`, which returns the user's input _as a String_. When we pass this string to `#dec2bin` it calls `String#to_s` instead of `Integer#to_s`. And [String#to_s documentation](https://docs.ruby-lang.org/en/master/Integer.html#method-i-to_s) doesn't accept an argument. That's why our program is crashing!
+We're assigning a value to `my_number` with `gets`, which returns the user's input _as a String_. When we pass this string to `#dec2bin` it calls `String#to_s` instead of `Integer#to_s`. And [String#to_s documentation](https://ruby-doc.org/current/Integer.html#method-i-to_s) doesn't accept an argument. That's why our program is crashing!
 
 This is an example of how Ruby's dynamism is a double-edged sword. It can be powerful and allow rapid development, but also requires extra attention. In this case the lack of type checking allowed us to pass an unexpected data type that crashed our application.
 
@@ -473,7 +473,7 @@ Nice! Now we can start working on a solution and quickly check if we're on the r
 
 ### Fixing the bug
 
-Fortunately we can easily solve this issue by converting the string to an Integer using the `String#to_i` method ([documentation](https://docs.ruby-lang.org/en/master/String.html#method-i-to_i)). It's also fortunate that this method is also available for Integers ([documentation](https://docs.ruby-lang.org/en/master/Integer.html#method-i-to_i)).
+Fortunately we can easily solve this issue by converting the string to an Integer using the `String#to_i` method ([documentation](https://ruby-doc.org/current/String.html#method-i-to_i)). It's also fortunate that this method is also available for Integers ([documentation](https://ruby-doc.org/current/Integer.html#method-i-to_i)).
 
 This is an example of how the Ruby's dynamism can promote rapid development. If we were coding with a strongly typed language, we would need to code different functions to allow receiving different data types. With Ruby we can code only one function and work on ways to handle the dynamic typing. As you can notice, everything is a trade-off (and if you're reading until here, you probably like Ruby's dynamism).
 
@@ -505,7 +505,7 @@ Let's recap what we learned in this chapter.
 - OOP: everything in Ruby is an object
 - Dynamic typing: variables can change types at runtime
 - String representation: all objects have a `to_s` method.
-- [Ruby documentation](https://docs.ruby-lang.org/) is an essential resource of information.
+- [Ruby documentation](https://ruby-doc.org/) is an essential resource of information.
 - `irb`: quickly experiment Ruby code
 - `binding.irb` is a useful debugging technique
 - `p`: inspect the contents of a variable

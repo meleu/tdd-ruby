@@ -46,7 +46,7 @@ I think that mentally counting the amount of `=`s to put above and below the tex
 
 #### Here Documents
 
-A [here document](https://docs.ruby-lang.org/en/master/syntax/literals_rdoc.html#label-Here+Document+Literals) (aka heredoc) is a more comfortable way to read a multilinear block of text. In our case, as we want to check if the borders of the banner have the proper length in a quick glance, we would use a heredoc like this:
+A [here document](https://ruby-doc.org/current/syntax/literals_rdoc.html#label-Here+Document+Literals) (aka heredoc) is a more comfortable way to read a multilinear block of text. In our case, as we want to check if the borders of the banner have the proper length in a quick glance, we would use a heredoc like this:
 
 ```ruby
 def test_banner
@@ -62,7 +62,7 @@ end
 
 Here we're using a "squiggly heredoc" so we can have indented content between the opening identifier (`<<~BANNER`) and the closing one (`BANNER`)
 
-Check the [official documentation](https://docs.ruby-lang.org/en/master/syntax/literals_rdoc.html#label-Here+Document+Literals) if you need more info about heredocs.
+Check the [official documentation](https://ruby-doc.org/current/syntax/literals_rdoc.html#label-Here+Document+Literals) if you need more info about heredocs.
 
 ### Write the minimal amount of code for the test to run
 
@@ -97,7 +97,7 @@ In order to create the banner we need:
 
 #### String length
 
-For our first goal, we can check the String class documentation and look if it has a method to give us the length of a string. Turns out that such method is the [String#length](https://docs.ruby-lang.org/en/master/String.html#method-i-length).
+For our first goal, we can check the String class documentation and look if it has a method to give us the length of a string. Turns out that such method is the [String#length](https://ruby-doc.org/current/String.html#method-i-length).
 
 Let's experiment in `irb`:
 
@@ -120,7 +120,7 @@ Moving on...
 
 #### Loops and Blocks
 
-One of the simplest ways to create a loop in Ruby is by using [the Integer#times method](https://docs.ruby-lang.org/en/master/Integer.html#method-i-times). Here's an example:
+One of the simplest ways to create a loop in Ruby is by using [the Integer#times method](https://ruby-doc.org/current/Integer.html#method-i-times). Here's an example:
 
 ```ruby
 5.times do
@@ -169,7 +169,7 @@ If we want to append content to a variable we could use the `+=` operator, like 
 #=> "Hello, meleu"
 ```
 
-Although it's possible to append contents to a string variable with the `+=` operator, the most usual Rubyist way to do it is by using the [shovel operator](https://docs.ruby-lang.org/en/master/String.html#method-i-3C-3C): `<<`
+Although it's possible to append contents to a string variable with the `+=` operator, the most usual Rubyist way to do it is by using the [shovel operator](https://ruby-doc.org/current/String.html#method-i-3C-3C): `<<`
 
 ```ruby
 # IRB SESSION
@@ -266,7 +266,7 @@ Run the test and you'll see that it's still working fine.
 
 #### String multiplication
 
-One interesting thing in [String documentation](https://docs.ruby-lang.org/en/master/String.html#method-i-2A) is that we can use `string * integer` to get a new string containing `integer` copies of the original `string`. Like this:
+One interesting thing in [String documentation](https://ruby-doc.org/current/String.html#method-i-2A) is that we can use `string * integer` to get a new string containing `integer` copies of the original `string`. Like this:
 
 ```ruby
 "Ho! " * 3
@@ -386,7 +386,7 @@ If our border needs to be as long as the longest line in the string, we need a w
 
 #### Iterating over each line of a String
 
-In the String class page we can see [a method called `#each_line`](https://docs.ruby-lang.org/en/master/String.html#method-i-each_line).
+In the String class page we can see [a method called `#each_line`](https://ruby-doc.org/current/String.html#method-i-each_line).
 
 When we call `String#each_line` giving a block to it, it creates substrings that are the result of splitting the original string at each occurrence of a new line. The new thing for us here is that `#each_line` needs a place (a variable) to where it puts the created substring. In this case we need to use a block with a parameter.
 
@@ -404,7 +404,7 @@ When the instructions within our block need to reference the value they're curre
 #=> "multi\nline\nstring"
 ```
 
-In each iteration the substring is stored in the `line` variable and we can use it however we want. In the example above we're just inspecting it with [the `Kernel#p` method](https://docs.ruby-lang.org/en/master/Kernel.html#method-i-p).
+In each iteration the substring is stored in the `line` variable and we can use it however we want. In the example above we're just inspecting it with [the `Kernel#p` method](https://ruby-doc.org/current/Kernel.html#method-i-p).
 
 That looks promising! 🙂
 
@@ -466,7 +466,7 @@ We could see that in our `irb` session:
 #=> "multi\nline\nstring"
 ```
 
-So, in order to accurately get the length of a line we must ignore the trailing newline character. Fortunately we ha method for that: [String#chomp](https://docs.ruby-lang.org/en/master/String.html#method-i-chomp).
+So, in order to accurately get the length of a line we must ignore the trailing newline character. Fortunately we ha method for that: [String#chomp](https://ruby-doc.org/current/String.html#method-i-chomp).
 
 This time you check by yourself on `irb`. Try it with a string like `"meleu\n"`.
 

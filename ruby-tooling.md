@@ -22,17 +22,13 @@ In this book we're going to use **Minitest**, for two reasons:
 
 ## Ruby documentation
 
-Bookmark this website: <https://docs.ruby-lang.org/>
+Bookmark this website: <https://ruby-doc.org/>
 
-That's the official documentation website for the Ruby language.
+It has the official documentation for the Ruby language and we're going to use it a lot.
 
-During this book we frequently check the documentation to see how to use a class and its methods.
-
-One cool tip about using the official documentation is about how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you exactly to where you want. This notation is also frequently used in the Ruby literature.
+One good tip about using the official documentation is how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you to where you want. This notation is also frequently used in the Ruby literature.
 
 Even when not prefixed with the class name, the `#` symbol used as a prefix implies that we're talking about a method. Example: `#puts`.
-
-**NOTE**: another very popular website with Ruby documentation is the <https://ruby-doc.org/>. But in this book we're going to use the official one.
 
 ## Interactive Ruby Shell (`irb`)
 
@@ -82,7 +78,7 @@ Hello, World!
 
 ## Basic Ruby coding style
 
-Throughout this book you'll see how Rubyists usually write their code. For now the only thing I want to say is that we name our variables and methods using `snake_case` rather than `camelCase`.
+Throughout this book you'll see how Rubyists usually write their code. For now the only thing we need to know is that we name our variables and methods using `snake_case` (not `camelCase`).
 
 ### Ruby Linter and Formatter
 
@@ -118,8 +114,8 @@ At this point you should have:
 
 - Ruby installed
 - typed at least one command inside `irb`
-- visited **and bookmarked** <https://docs.ruby-lang.org/>
-- understood that you should use snake_case
+- visited **and bookmarked** <https://ruby-doc.org/>
+- understood that we name variables and methods using `snake_case`
 - a text editor available
 - created the `TDD_RUBY_PATH` variable in your shell
 - initialized a local git repository
