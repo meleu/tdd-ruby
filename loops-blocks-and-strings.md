@@ -544,7 +544,7 @@ git commit -m 'fix(banner): handle multiline text'
   - `each_line`
   - `chomp`
 
-### TDD
+### Testing
 
 - Reinforced TDD practices (write test first!)
 - After receiving a bug report:

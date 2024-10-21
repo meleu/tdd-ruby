@@ -43,7 +43,23 @@ Now let's start our _Decimal to Binary Converter™_ project following the TDD c
 
 ### Write the test first
 
-We still have no idea about how to implement this converter, but by looking at the [Wikipedia page about binary numbers](https://simple.wikipedia.org/wiki/Binary_number) we can see a table with some equivalents. Here are some examples:
+We still have no idea about how to implement this converter, then *how can we write a test for a code that doesn't even exist?!* That's strong and valid question. The answer is: **write the test using the best interface you can think of to perform the operation**.
+
+Keeping this in mind, I list here my ideas for a great interface to a function able to convert a decimal number to its binary representation:
+
+- a function named `dec2bin`
+- it accepts an integer number as the only argument
+- it returns the binary representation of the given number
+
+Something like this:
+
+```ruby
+binary = dec2bin(123)
+```
+
+Yeah, that looks good. Let's go ahead and create a test for that (inexistent) function!
+
+We will need to, at least, know what would be a successful conversion. For this I use the [Wikipedia page about binary numbers](https://simple.wikipedia.org/wiki/Binary_number), where we can see a table like this:
 
 | decimal | binary |
 | :-----: | -----: |
@@ -74,7 +90,7 @@ class TestDec2Bin < Minitest::Test
 end
 ```
 
-Let's run this test and see the error message.
+Run this test and check the error message.
 
 ### Error vs. Failure
 
@@ -512,7 +528,7 @@ Let's recap what we learned in this chapter.
 - `gets`: read user's input
 - method chaining: calling multiple methods in sequence (e.g.: `number.to_i.to_s(2)`)
 
-### TDD
+### Testing
 
 - Test-first approach: write the test before implementation code.
 - Test Error vs. Test Failure

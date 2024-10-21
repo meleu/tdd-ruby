@@ -627,7 +627,7 @@ We learn a bunch of things here.
 - `case` statements
 - how to write tests with Minitest
 
-### TDD
+### Testing
 
 The TDD process and _why_ the steps are important
 

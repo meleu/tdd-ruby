@@ -18,7 +18,7 @@ The Ruby community has two main testing frameworks:
 In this book we're going to use **Minitest**, for two reasons:
 
 1. it comes with the Ruby Standard Library.
-2. "it doesn’t reinvent anything that ruby already provides. This means you only have to learn ruby to use minitest" - (from [minitest's README](https://github.com/minitest/minitest?tab=readme-ov-file#description-))
+2. you only have to know ruby to use Minitest
 
 ## Ruby documentation
 

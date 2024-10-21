@@ -4,6 +4,8 @@
 
 This "book" is my attempt to teach idiomatic **Ruby** and **Test-Driven Development** (TDD).
 
+(spoiler: we're going to use **Minitest**, not RSpec)
+
 ## Why?
 
 ### Why Ruby?
@@ -32,7 +34,9 @@ The chapters are presented in a sequence where new Ruby features are introduced 
 
 Initially the cycle may seem tedious, but as you progress through the book you'll see how productive it is to get instant feedback on your work.
 
-You'll notice that the programs we'll code are really simple. That's intentional. The greatest value will be in the way we solve the problems. The tools we use, the tests we write, the way we organize our code...
+In the first chapters we use a [procedural programming paradigm](https://en.wikipedia.org/wiki/Procedural_programming) to show both the fundamentals of Ruby syntax and how TDD works. Once the basic Ruby concepts are addressed we start to write our code using Object-Oriented Programming.
+
+You'll notice that the programs are really simple. That's intentional. The greatest value will be in the way we solve the problems. The tools we use, the tests we write, the way we organize our code...
 
 If I used "real world problems", I would need to spend words explaining the problem's domain and then talk about the techniques. That would be lengthy and confusing. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have to solve.
 
