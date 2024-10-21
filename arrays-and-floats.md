@@ -113,7 +113,7 @@ Now your test is failing with no errors.
 
 When we have an array, it is very common to have to iterate over them, and the sum is a good example. We need to iterate over each element and add them in an accumulator.
 
-To iterate over each element of an array we use [the `Array#each` method](https://ruby-doc.org/current/Array.html#method-i-each), and to perform actions with the elements we also pass a block with a parameter (which we learn in the previous chapter).
+To iterate over each element of an array we use [the `Array#each` method](https://ruby-doc.org/current/Array.html#method-i-each), and to perform actions with the elements we also pass a block with a parameter (which we learned in the previous chapter).
 
 So, to calculate the sum we do this:
 
@@ -180,7 +180,7 @@ class AverageTest < Minitest::Test
 end
 ```
 
-Our TODO list now like this:
+Our TODO list is now like this:
 
 > - [x] calculate the sum
 > - [ ] calculate the average
@@ -217,7 +217,7 @@ Sometimes it's useful to print a meaningful message when our assertion fails. It
 
 We're ready to run the tests and check the error messages.
 
-### Write the minimal amount of code for the test to run
+#### Write the minimal amount of code for the test to run
 
 You should end up with an `average.rb` like this:
 
@@ -310,15 +310,15 @@ In other words: `10 / 4` is a syntactic sugar for `10./(4)`.
 #=> 2
 ```
 
- If `/` "slash" is a method, then we have documentation for it! As we are calling it on `10`, we should look for the `#/` method in [the Integer documentation](https://ruby-doc.org/current/Integer.html#method-i-2F). And there we can see this description:
+ If `/` "slash" is a method, then we have documentation for it! As we are calling it an Integer (`10`), we should look for [the Integer#/ documentation](https://ruby-doc.org/current/Integer.html#method-i-2F). And there we can see this description:
 
 > **self / numeric → numeric_result**
 >
 >Performs division; for integer `numeric`, truncates the result to an integer
 
-Oh, that's why our average function is not working properly! As the `numeric` argument is an integer, the result is truncated to an integer.
+Oh, that's why our average function is not working properly! As the divisor is an integer, the result is truncated to an integer.
 
-So, to solve this we just need to convert `numeric` to a float. Let's confirm:
+To solve this we just need to convert the divisor to a float. Let's confirm:
 
 ```ruby
 # IRB SESSION
@@ -341,17 +341,19 @@ Run the test and it should pass.
 
 To be fair, the current function is pretty OK. No need for refactoring.
 
-There's one more aspect of average calculation and float numbers that warrants exploration: how to write a test when the average results in a repeating decimal?
+### Assertion with floats
+
+There's one more aspect of average calculation and float numbers that warrants extra exploration: how to write a test when the average results in a repeating decimal?
 
 Let's update our TODO list marking what we did and adding a new test:
 
 > - [x] calculate the sum
 > - [x] calculate the average
-> - [ ] average results in a repeating decimal
+> - [ ] dealing with repeating decimal numbers
 
 #### Adding a new test
 
-Example:
+Here's an example with a repeating decimal:
 
 The numbers are 2, 3, and 5; then we have
 
@@ -359,7 +361,7 @@ The numbers are 2, 3, and 5; then we have
 - amount of numbers: 3
 - **average**: 10 / 3 = **3.333...**
 
-If we want to write a test for this case, how many decimal digits should we use? Let's try with just 3 decimals:
+If we want to write a test for this case, how many decimal digits should we use? Let's see what happens with just 3 decimals:
 
 ```ruby
 def test_average_with_repeating_decimal
@@ -388,6 +390,7 @@ Fortunately we have an specific assertion to deal with floats: `assert_in_delta`
 Speaking in another way, it checks if the expected and the actual values are within `delta` difference of each other.
 
 Let's rewrite our test using this new assertion:
+
 ```ruby
 def test_average_with_repeating_decimal
   numbers = [2, 3, 5]
@@ -401,22 +404,29 @@ If you run the test now it should pass.
 
 As a little exercise, change the return value of your `average` implementation (e.g.: return a hardcoded zero) and check the failure message.
 
-This test was added just to learn how to deal with repeating decimals and didn't require any change on our code. Neither are we going to refactor it. Then let's update our TODO list.
+This test was added just to learn how to deal with repeating decimals and didn't require any change on our code (neither are we going to refactor it). Then let's update our TODO list.
 
 > - [x] calculate the sum
 > - [x] calculate the average
-> - [x] average results in a repeating decimal
+> - [x] dealing with repeating decimal numbers
 
-This is enough for this chapter.
+### Source Control
+
+```bash
+git add average_test.rb average.rb
+git commit -m 'feat: add average function'
+```
+
 
 ## Key Concepts
 
 ### Ruby
 
-- Array#sum 
-- Array#length (aliased as Array#size)
+- Array#sum: get the sum the numbers in an array
+- Array#length (aliased as Array#size): get the amount of elements in an array
 - Division of integers always result in a truncated integer.
-- Float are not always accurate.
+  - Change the divisor to a float to get the result in a float.
+- Floating point numbers are not always accurate.
 
 ### Testing
 
