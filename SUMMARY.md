@@ -8,7 +8,7 @@
 - [Hello, world](hello-world.md)
 - [Objects, Methods & Integers](objects-methods-and-integers.md)
 - [Loops, Blocks & Strings](loops-blocks-and-strings.md)
-- [Arrays and Floats](arrays-and-floats.md)
+- [Arrays & Floats](arrays-and-floats.md)
 
 ## Meta
 

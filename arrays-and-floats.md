@@ -417,13 +417,27 @@ git add average_test.rb average.rb
 git commit -m 'feat: add average function'
 ```
 
+## Other useful Array methods
+
+As you may have noticed, Ruby’s standard library comes with a lot of useful solutions (for example, Array#sum).
+
+Other quite handy Array methods provided by default are:
+
+- `#each_with_index` – use this when you want to iterate over each element and need the index.
+- `#sort` – returns a new array with the elements of the original array, but sorted.
+- `#sort_by` – similar to `#sort`, but allows you to specify the sorting criterion.
+- `#min`, `#max` – returns the minimum/maximum valued element in the array.
+- `#minmax` – returns a new 2-element array containing the minimum and maximum values.
+
+This is a short list of the Array’s methods. Be sure to spend some time reading [the Array class documentation](https://ruby-doc.org/current/Array.html); it’s a worthwhile investment of your time. 
 
 ## Key Concepts
 
 ### Ruby
 
-- Array#sum: get the sum the numbers in an array
-- Array#length (aliased as Array#size): get the amount of elements in an array
+- Array#sum: get the sum the numbers in an array.
+- Array#length (aliased as Array#size): get the amount of elements in an array.
+- The default Ruby library has many other useful methods for handling Arrays.
 - Division of integers always result in a truncated integer.
   - Change the divisor to a float to get the result in a float.
 - Floating point numbers are not always accurate.
