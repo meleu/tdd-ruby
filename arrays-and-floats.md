@@ -89,8 +89,8 @@ require_relative 'average'
 class AverageTest < Minitest::Test
   def test_sum_numbers_in_array
     numbers = [1, 2, 3]
-    expected = 6
     actual = sum(numbers)
+    expected = 6
     assert_equal expected, actual
   end
 end
@@ -381,13 +381,13 @@ Expected: 3.333
   Actual: 3.3333333333333335
 ```
 
-Fortunately we have an specific assertion to deal with floats: `assert_in_delta`. And [it's documentation](https://ruby-doc.org/current/gems/minitest/Minitest/Assertions.html#method-i-assert_in_delta) is pretty descriptive:
+As we can see, creating an assertion with Floats is not that straightforward. Fortunately we have an specific assertion to deal with Floats: `assert_in_delta`. And [it's documentation](https://ruby-doc.org/current/gems/minitest/Minitest/Assertions.html#method-i-assert_in_delta) is pretty descriptive:
 
 > **assert_in_delta(exp, act, delta = 0.001, msg = nil)**
 > 
 > For comparing Floats. Fails unless `exp` and `act` are within `delta` of each other.
 
-Speaking in another way, it checks if the expected and the actual values are within `delta` difference of each other.
+Explaining in another way, it checks if the expected and the actual values are within `delta` difference of each other.
 
 Let's rewrite our test using this new assertion:
 
