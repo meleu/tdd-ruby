@@ -34,8 +34,7 @@ require_relative 'banner'
 class TestBanner < Minitest::Test
   def test_banner
     expected = "====\ntext\n====\n"
-    actual = banner('text')
-    assert_equal expected, actual
+    assert_equal expected, banner('text')
   end
 end
 ```
@@ -55,8 +54,7 @@ def test_banner
     text
     ====
   BANNER
-  actual = banner('text')
-  assert_equal expected, actual
+  assert_equal expected, banner('text')
 end
 ```
 
@@ -351,8 +349,7 @@ def test_banner_with_multiple_lines
     =============
   BANNER
   text = "text\nwith multiple\nlines"
-  actual = banner(text)
-  assert_equal expected, actual
+  assert_equal expected, banner(text)
 end
 ```
 
