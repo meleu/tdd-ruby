@@ -414,7 +414,7 @@ This test was added just to learn how to deal with repeating decimals and didn't
 
 ```bash
 git add average_test.rb average.rb
-git commit -m 'feat: add average function'
+git commit -m 'feat(average): add average function'
 ```
 
 ## Other useful Array methods

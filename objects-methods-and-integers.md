@@ -368,7 +368,17 @@ end
 
 Run the test and it should pass.
 
-Now we can ask ourselves if it makes sense to keep two assertions. I don't want to spend much mental energy on this decision, then I'll just keep them and move on.
+Now we can ask ourselves if it makes sense to keep two assertions of the same behavior. Well, the second assertion did its job when we were exploring the behavior and it was useful. Now I think we don't need that anymore, so let's keep only one assertion.
+
+```ruby
+class TestDec2Bin < Minitest::Test
+  def test_dec2bin
+    assert_equal "1000", dec2bin(8)
+  end
+end
+```
+
+Run the test and it should pass. And we're done with this refactoring phase.
 
 Now let's use our current code in an application.
 

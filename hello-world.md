@@ -581,7 +581,7 @@ Let's commit what we've done so far:
 
 ```bash
 git add hello.rb hello_test.rb
-git commit -m 'feat: multilingual hello world'
+git commit -m 'feat(hello): multilingual hello world'
 ```
 
 ### Olá, Hallo, Ciao, Konnichiwa
