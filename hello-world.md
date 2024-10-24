@@ -89,8 +89,8 @@ require_relative 'hello'
 
 class TestHello < Minitest::Test
   def test_hello
-    expected = "Hello, world"
     actual = hello
+    expected = "Hello, world"
     assert_equal expected, actual
   end
 end
@@ -169,8 +169,8 @@ require_relative 'hello'
 
 class TestHello < Minitest::Test
   def test_hello
-    expected = "Hello, meleu"
     actual = hello("meleu")
+    expected = "Hello, meleu"
     assert_equal expected, actual
   end
 end
@@ -179,19 +179,11 @@ end
 Now run `ruby hello_test.rb` and you should see an error like this:
 
 ```
-# Running:
-
-E
-
-Finished in 0.001266s, 789.7771 runs/s, 0.0000 assertions/s.
-
   1) Error:
 TestHello#test_hello:
 ArgumentError: wrong number of arguments (given 1, expected 0)
     hello.rb:1:in `hello'
-    hello_test.rb:7:in `test_hello'
-
-1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+    hello_test.rb:6:in `test_hello'
 ```
 
 It's important to pay attention to the error message here, it gives us the information we need to figure out what's wrong with our code.
@@ -270,14 +262,14 @@ As TDD practitioners, we write the _tests first_, so let's write a new failing t
 ```ruby
 class TestHello < Minitest::Test
   def test_say_hello_to_people
-    expected = "Hello, meleu"
     actual = hello("meleu")
+    expected = "Hello, meleu"
     assert_equal expected, actual
   end
 
   def test_say_hello_world_when_called_with_no_arguments
-    expected = "Hello, world"
     actual = hello
+    expected = "Hello, world"
     assert_equal expected, actual
   end
 end
@@ -285,22 +277,14 @@ end
 
 Do note that the test functions now have a descriptive (and long) name. It's important to give descriptive names to your tests, so you can know what to do when they fail.
 
-After running the tests we'll see an output like this:
+After running the tests we'll see an error message like this:
 
 ```
-# Running:
-
-.E
-
-Finished in 0.001415s, 1413.7393 runs/s, 706.8696 assertions/s.
-
   1) Error:
 TestHello#test_say_hello_world_when_called_with_no_arguments:
 ArgumentError: wrong number of arguments (given 0, expected 1)
     /path/to/hello.rb:1:in `hello'
-    hello_test.rb:13:in `test_say_hello_world_when_called_with_no_arguments'
-
-2 runs, 1 assertions, 0 failures, 1 errors, 0 skips
+    hello_test.rb:14:in `test_say_hello_world_when_called_with_no_arguments'
 ```
 
 That error message is telling us that:
@@ -377,8 +361,8 @@ Let's write a test for a user passing in Spanish and add it to the existing suit
 
 ```ruby
 def test_say_hello_in_spanish
-  expected = "Hola, Juan"
   actual = hello("Juan", "spanish")
+  expected = "Hola, Juan"
   assert_equal expected, actual
 end
 ```
@@ -396,7 +380,7 @@ Finished in 0.000772s, 3884.1235 runs/s, 2589.4157 assertions/s.
 TestHello#test_say_hello_in_spanish:
 ArgumentError: wrong number of arguments (given 2, expected 0..1)
     /path/to/hello.rb:1:in `hello'
-    hello_test.rb:19:in `test_say_hello_in_spanish'
+    hello_test.rb:20:in `test_say_hello_in_spanish'
 
 3 runs, 2 assertions, 0 failures, 1 errors, 0 skips
 ```
@@ -496,8 +480,8 @@ Let's add a test for the French language.
 
 ```ruby
 def test_say_hello_in_french
-  expected = 'Bonjour, Jean'
   actual = hello('Jean', 'french')
+  expected = 'Bonjour, Jean'
   assert_equal expected, actual
 end
 ```

@@ -518,7 +518,7 @@ end
 
 Run the tests and they should pass.
 
-For now I think I'm happy with this version. So, let's move on.
+For now I'm happy with this version. So, let's move on.
 
 ### Source Control
 
