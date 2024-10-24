@@ -83,8 +83,8 @@ require_relative "dec2bin"
 
 class TestDec2Bin < Minitest::Test
   def test_convert_eight
-    expected = "1000"
     actual = dec2bin(8)
+    expected = "1000"
     assert_equal expected, actual
   end
 end
@@ -205,8 +205,8 @@ Maybe we should add another test to `dec2bin_test.rb`:
 
 ```ruby
 def test_convert_two
-  expected = "10"
   actual = dec2bin(2)
+  expected = "10"
   assert_equal expected, actual
 end
 ```
@@ -315,9 +315,71 @@ Finished in 0.000261s, 7662.8350 runs/s, 7662.8350 assertions/s.
 2 runs, 2 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-Great! All tests passing means that it's time to refactor. But, uhm... there's no much room for refactoring in single line function.
+Great! All tests passing means that it's time to refactor.
 
-Let's just use our current code in an application.
+### Refactor
+
+There's no much room for refactoring in a single line function. However, the refactoring phase is not just about the tidying up the production code. The tests also deserve to be tidy.
+
+Currently our test class looks like this:
+
+```ruby
+class TestDec2Bin < Minitest::Test
+  def test_convert_eight
+    actual = dec2bin(8)
+    expected = "1000"
+    assert_equal expected, actual
+  end
+
+  def test_convert_two
+    actual = dec2bin(2)
+    expected = "10"
+    assert_equal expected, actual
+  end
+end
+```
+
+So far I've been writing tests assigning values to `expected` and `actual` variables and then passing them to `assert_equal`. This makes the code more explicit and intention revealing. However, for simple cases like the ones we have here, a more realistic approach would be to inline the expected value and the function call like this:
+
+```ruby
+class TestDec2Bin < Minitest::Test
+  def test_convert_eight
+    assert_equal "1000", dec2bin(8)
+  end
+
+  def test_convert_two
+    assert_equal "10", dec2bin(2)
+  end
+end
+```
+
+Run the tests and they should pass. Therefore, it's time for another round of refactoring.
+
+One important aspect of tests to keep in mind is: we should have one test per behavior. If we look carefully, both tests we currently have are testing the same behavior, a simple case of converting an integer to its binary notation. So, I think both tests should be merged into one (and the test be renamed accordingly):
+
+```ruby
+class TestDec2Bin < Minitest::Test
+  def test_dec2bin
+    assert_equal "1000", dec2bin(8)
+    assert_equal "10", dec2bin(2)
+  end
+end
+```
+
+Run the test and it should pass.
+
+Now we can ask ourselves if it makes sense to keep two assertions. I don't want to spend much mental energy on this decision, then I'll just keep them and move on.
+
+Now let's use our current code in an application.
+
+### Source Control
+
+Now it's a good time to commit what we have:
+
+```bash
+git add dec2bin_test.rb dec2bin.rb
+git commit -m 'feat(dec2bin): print numbers in binary notation'
+```
 
 ## d2b CLI
 
@@ -468,9 +530,8 @@ Let's write a test giving the problematic String to the `dec2bin` function:
 
 ```ruby
 def test_convert_number_in_string
-  expected = "111"
-  actual = dec2bin("7\n")
-  assert_equal expected, actual
+  input = "7\n"
+  assert_equal "111", dec2bin(input)
 end
 ```
 
@@ -503,13 +564,15 @@ end
 
 Run the tests and they should be passing now.
 
+Run the CLI again and it should work without crashing.
+
 ## Source Control
 
 As our repo already has the hello-world code from the previous chapter, let's specify the scope of the current changes in the commit message.
 
 ```bash
 git add dec2bin_test.rb dec2bin.rb d2b.rb
-git commit -m 'feat(dec2bin): print numbers in binary notation'
+git commit -m 'feat(dec2bin): use #to_i before #to_s(2) & add a CLI'
 ```
 
 ## Key Concepts
@@ -533,5 +596,6 @@ Let's recap what we learned in this chapter.
 - Test-first approach: write the test before implementation code.
 - Test Error vs. Test Failure
 - Minimal implementation: write just enough code to make the tests pass (without being pedantic, please).
+- Test code also needs refactoring to stay tidy.
 - TDD guides the development, but does not assure our software is free of bugs.
 - Replicating bugs in tests: add test cases for discovered issues before fixing them.
