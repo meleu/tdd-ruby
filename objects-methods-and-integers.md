@@ -1,6 +1,6 @@
 # Objects, Methods and Integers
 
-Ruby is an Object-Oriented Programming (OOP) language. In Ruby (almost) everything we interact with is an object. That includes basic data types like numbers, strings and even `nil`. Every value in Ruby has an underlying object representation and can be manipulated with methods.
+In Ruby everything we interact with is an object. That includes basic data types like numbers, strings and even `nil`. Every value in Ruby has an underlying object representation and can be manipulated with methods.
 
 Ruby is also known to be "weakly typed", which means that type checking is not strictly enforced. This feature allows variables to change types dynamically at runtime. Example:
 
@@ -13,15 +13,15 @@ The object-oriented approach combined with the dynamic type system make Ruby a p
 
 ## Decimal to Binary Converter
 
-The numeral system humans are used to use is the decimal system. It has this name because it uses ten different digits to represent the numbers: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`.
+The numeral system humans are used to use is the decimal system. It has this name because it uses ten different digits to represent the values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`.
 
-The [binary numeral system](https://simple.wikipedia.org/wiki/Binary_number) is a way to write numbers using only two digits: `0` and `1`. As it only needs two digits, we can say it's a _base two_ number system.
+The [binary numeral system](https://simple.wikipedia.org/wiki/Binary_number) is a way to represent vaues using only two digits: `0` and `1`. As it only needs two digits, we can say it's a _base two_ number system.
 
 For computers the binary system is extremely efficient because they need to store information in only two simple different states: "on" or "off" (`1` or `0`). Sets of binary numbers can be used to represent any information, such as text, audio, or video.
 
 For the code we're going to work on this chapter I'm assuming you at least know what a binary number is and that it's a _base two_ number system.
 
-You don't need to know the math needed to convert a decimal number to binary notation (Ruby has convenient ways to do it). But I'm assuming you know that the binary `1001` is not one thousand and one (you don't even need to know that it's nine).
+You don't need to know the math needed to convert a decimal number to binary notation (Ruby has convenient ways to do it). But I'm assuming you know that the binary `1001` is not one thousand and one (you don't need to know that it represents nine).
 
 If you need more information on this topic, [this Wikipedia page](https://simple.wikipedia.org/wiki/Binary_number) can be a good start.
 
@@ -30,8 +30,8 @@ The very first thing is to create a directory for us to work:
 ```bash
 # remember to define TDD_RUBY_PATH in your shell configuration
 cd $TDD_RUBY_PATH
-mkdir dec2bin
-cd dec2bin
+mkdir number-converter
+cd number-converter
 ```
 
 Now let's start our _Decimal to Binary Converter™_ project following the TDD cycle:
@@ -43,23 +43,25 @@ Now let's start our _Decimal to Binary Converter™_ project following the TDD c
 
 ### Write the test first
 
-We still have no idea about how to implement this converter, then *how can we write a test for a code that doesn't even exist?!* That's strong and valid question. The answer is: **write the test using the best interface you can think of to perform the operation**.
+We still have no idea about how to implement this converter, then *how can we write a test for a code that doesn't even exist?!* That's a strong and valid question. The answer is: **write the test using the best interface you can think of to perform the operation**.
 
-Keeping this in mind, I list here my ideas for a great interface to a function able to convert a decimal number to its binary representation:
+Keeping this in mind, I list here my ideas for a great interface to a class able to convert a decimal number to its binary representation:
 
-- a function named `dec2bin`
+- a class named `NumberConverter`
+- a method named `dec2bin`
 - it accepts an integer number as the only argument
 - it returns the binary representation of the given number
 
 Something like this:
 
 ```ruby
-binary = dec2bin(123)
+converter = NumberConverter.new
+binary = converter.dec2bin(123)
 ```
 
-Yeah, that looks good. Let's go ahead and create a test for that (inexistent) function!
+Yeah, that looks good.
 
-We will need to, at least, know what would be a successful conversion. For this I use the [Wikipedia page about binary numbers](https://simple.wikipedia.org/wiki/Binary_number), where we can see a table like this:
+But before creating an assertion, we need to know what would be a successful conversion. For this I use the [Wikipedia page about binary numbers](https://simple.wikipedia.org/wiki/Binary_number), where we can see a table like this:
 
 | decimal | binary |
 | :-----: | -----: |
@@ -75,15 +77,16 @@ We will need to, at least, know what would be a successful conversion. For this 
 
 Let's use 8 to write our first test.
 
-Create a file named `dec2bin_test.rb`:
+Create a file named `number_converter_test.rb`:
 
 ```ruby
 require "minitest/autorun"
-require_relative "dec2bin"
+require_relative "number_converter"
 
-class TestDec2Bin < Minitest::Test
-  def test_convert_eight
-    actual = dec2bin(8)
+class TestNumberConverter < Minitest::Test
+  def test_convert_eight_to_binary
+    converter = NumberConverter.new
+    actual = converter.dec2bin(8)
     expected = "1000"
     assert_equal expected, actual
   end
@@ -92,34 +95,23 @@ end
 
 Run this test and check the error message.
 
-### Error vs. Failure
-
-In the very first run of our test we see an error:
-
 ```
-$ ruby dec2bin_test.rb
+$ ruby number_converter_test.rb
 
-dec2bin_test.rb:2:in `require_relative': cannot load such file -- /path/to/dec2bin (LoadError)
-        from dec2bin_test.rb:2:in `<main>'
+number_converter_test.rb:2:in `require_relative': cannot load such file -- /path/to/number-converter/number_converter (LoadError)
+        from number_converter_test.rb:2:in `<main>'
 ```
 
-It's important to understand the subtle difference between an **error** and a **failure**.
+We got an error...
 
-An **error** means that there's something broken in our code, and it prevents our tests from running. A **failure** means that our test ran, but it failed assert the defined expectations.
+### Write the minimal amount of code for the test to run
 
-When we face an error, we should check the message and write the minimal amount of code for the test to run.
-
-### Write the minimal amount of code to for the test to run
-
-By doing this we're letting the tests guide our development. That's a core concept of Test-Driven Development.
+By writing the minimal amount of code for the test to pass we're letting the tests guide our development. That's a core concept of Test-Driven Development. The main benefits with this principle is to take small steps and prevent over-engineering your implementation.
 
 Back to the error message:
 
 ```
-$ ruby dec2bin_test.rb
-
-dec2bin_test.rb:2:in `require_relative': cannot load such file -- /path/to/dec2bin (LoadError)
-        from dec2bin_test.rb:2:in `<main>'
+number_converter_test.rb:2:in `require_relative': cannot load such file -- /path/to/number-converter/number_converter (LoadError)
 ```
 
 We're requiring a file that doesn't exist. Then let's create the file, run the test again and see the next error:
@@ -135,39 +127,59 @@ $ ruby dec2bin_test.rb
 
 E
 
-Finished in 0.000271s, 3690.0373 runs/s, 0.0000 assertions/s.
+Finished in 0.001917s, 521.5445 runs/s, 0.0000 assertions/s.
 
   1) Error:
-TestDec2Bin#test_convert_eight:
-NoMethodError: undefined method `dec2bin' for #<TestDec2Bin:0x00000001348f40f0>
-    dec2bin_test.rb:7:in `test_convert_eight'
+TestNumberConverter#test_convert_eight_to_binary:
+NameError: uninitialized constant TestNumberConverter::NumberConverter
+    number_converter_test.rb:6:in `test_convert_eight_to_binary'
 
 1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
 ```
 
-Now the error message says `NoMethodError: undefined method 'dec2bin' ...`.
+Now the error message says `NameError: uninitialized constant TestNumberConverter::NumberConverter`.
 
-Let's create that method in our `dec2bin.rb`:
+When we create a class, the class's name is a constant. That's why the error message says `uninitialized constant`.  To solve this we must create the class in the `number_converter.rb`:
 
 ```ruby
-def dec2bin
+class NumberConverter
+end
+```
+
+By running the test again, we see this error:
+
+```
+  1) Error:
+TestNumberConverter#test_convert_eight_to_binary:
+NoMethodError: undefined method `dec2bin' for an instance of NumberConverter
+    number_converter_test.rb:7:in `test_convert_eight_to_binary'
+```
+
+It's complaining that the method doesn't exist, then let's create it:
+
+```ruby
+class NumberConverter
+  def dec2bin
+  end
 end
 ```
 
 Run the test, check the message:
 
 ```
-1) Error:
-TestDec2Bin#test_convert_eight:
+  1) Error:
+TestNumberConverter#test_convert_eight_to_binary:
 ArgumentError: wrong number of arguments (given 1, expected 0)
-    /path/to/dec2bin.rb:1:in `dec2bin'
-    dec2bin_test.rb:7:in `test_convert_eight'
+    number_converter.rb:2:in `dec2bin'
+    number_converter_test.rb:7:in `test_convert_eight_to_binary'
 ```
 
 Let's fix the `wrong number of arguments` in our `dec2bin.rb`:
 
 ```ruby
-def dec2bin(number)
+class NumberConverter
+  def dec2bin(number)
+  end
 end
 ```
 
@@ -175,7 +187,7 @@ Run the test, check the message:
 
 ```
   1) Failure:
-TestDec2Bin#test_convert_eight [dec2bin_test.rb:8]:
+TestNumberConverter#test_convert_eight_to_binary [number_converter_test.rb:9]:
 Expected: "1000"
   Actual: nil
 ```
@@ -191,23 +203,32 @@ Even if my arguments are not convincing you, please stick with this practice whi
 
 ### Write enough code to make the test pass
 
-The failure message says that the expected result is `"1000"` but it received `nil`. So, let's fix this like a pedantic programmer and "write the minimal amount of code to make the test pass":
+The failure message says that the expected result is `"1000"` but it received `nil`. So, let's fix this like a pedantic programmer and "write the minimal amount of code to make the test pass" (this is what Kent Beck calls "fake it 'till you make it"):
 
 ```ruby
-def dec2bin(number)
-  "1000"
+class NumberConverter
+  def dec2bin(number)
+    "1000"
+  end
 end
 ```
 
 Ah hah! Foiled again! TDD is a sham, right?
 
-Maybe we should add another test to `dec2bin_test.rb`:
+Maybe we should add another assertion to our test in `number_converter_test.rb`:
 
 ```ruby
-def test_convert_two
-  actual = dec2bin(2)
-  expected = "10"
-  assert_equal expected, actual
+# ...
+
+class TestNumberConverter < Minitest::Test
+  # ...
+  
+  def test_convert_two_to_binary
+    converter = NumberConverter.new
+    actual = converter.dec2bin(2)
+    expected = "10"
+    assert_equal expected, actual
+  end
 end
 ```
 
@@ -218,10 +239,10 @@ Running the tests:
 
 F.
 
-Finished in 0.000265s, 7547.1687 runs/s, 7547.1687 assertions/s.
+Finished in 0.001159s, 1726.0619 runs/s, 1726.0619 assertions/s.
 
   1) Failure:
-TestDec2Bin#test_convert_two [dec2bin_test.rb:14]:
+TestNumberConverter#test_convert_two_to_binary [number_converter_test.rb:16]:
 Expected: "10"
   Actual: "1000"
 
@@ -236,13 +257,11 @@ Let's stop here and start to work on the code that will actually convert a decim
 
 ### "Everything" is an Object
 
-In the beginning of this chapter I said: **every value in Ruby has an underlying object representation and can be manipulated with methods**.
-
-That includes the integer numbers. They are objects and we can interact with them using their methods.
+In the beginning of this chapter I said: **every value in Ruby has an underlying object representation and can be manipulated with methods**. This includes the integer numbers. They are objects and we can interact with them using their methods.
 
 Another fact about Ruby objects is that all of them have a string representation that can be obtained by the `#to_s` method (`to_s` stands for "to string").
 
-As our goal is to convert a decimal to its binary representation, and this representation is written in a string, maybe we can get some help from `Integer#to_s`. Let's take a look at its documentation...
+As our goal is to convert a decimal to its binary representation, and this representation is written in a string, maybe we can get some help from `Integer#to_s`.
 
 ### The Integer#to_s method
 
@@ -261,7 +280,9 @@ We don't need to read all that page, but use it as a reference when needed. As w
 > 12345.to_s(2)  # => "11000000111001"
 > ```
 
-Hey! That looks promising! The method accepts an argument that acts as the base for the string representation we want to get from the integer. As the binary system uses base two, let's check if it can be used in our converter.
+Hey! Although the description can sound kind of cryptic, the example looks promising!
+
+The method accepts an argument that acts as the base for the string representation we want to get from the integer. As the binary system uses base two, let's check if it can be used in our converter.
 
 Before opening our code editor and writing our implementation, let's play a bit in the Interactive Ruby Shell (`irb`).
 
@@ -298,8 +319,10 @@ Alright! I'm convinced! Let's use this method in our converter.
 Now that we know `Integer#to_s` can solve our problem, let's use it in our code:
 
 ```ruby
-def dec2bin(number)
-  number.to_s(2)
+class NumberConverter
+  def dec2bin(number)
+    number.to_s(2)
+  end
 end
 ```
 
@@ -324,70 +347,70 @@ There's no much room for refactoring in a single line function. However, the ref
 Currently our test class looks like this:
 
 ```ruby
-class TestDec2Bin < Minitest::Test
+# ...
+
+class TestNumberConverter < Minitest::Test
   def test_convert_eight
-    actual = dec2bin(8)
+    converter = NumberConverter.new
+    actual = converter.dec2bin(8)
     expected = "1000"
     assert_equal expected, actual
   end
 
-  def test_convert_two
-    actual = dec2bin(2)
+  def test_convert_two_to_binary
+    converter = NumberConverter.new
+    actual = converter.dec2bin(2)
     expected = "10"
     assert_equal expected, actual
   end
 end
 ```
 
-So far I've been writing tests assigning values to `expected` and `actual` variables and then passing them to `assert_equal`. This makes the code more explicit and intention revealing. However, for simple cases like the ones we have here, a more realistic approach would be to inline the expected value and the function call like this:
+So far I've been writing tests assigning values to `expected` and `actual` variables and then passing them to `assert_equal`. I did this for a didactic reason, just to make it explicit that an assertion involves a comparison between an expected value and the actual value. Now that you (hopefully) already got the idea, we can make the testing code more concise.
+
+First, as we instantiate an object for just one method call, we can do it with a single expression, like this:
 
 ```ruby
-class TestDec2Bin < Minitest::Test
+actual = NumberConverter.new.dec2bin(8)
+```
+
+The second change towards conciseness is that we can inline the expected value and the method call in the assertion line. Now our test file can look like this:
+
+```ruby
+# ...
+
+class TestNumberConverter < Minitest::Test
   def test_convert_eight
-    assert_equal "1000", dec2bin(8)
+    assert_equal "1000", NumberConverter.new.dec2bin(8)
   end
 
-  def test_convert_two
-    assert_equal "10", dec2bin(2)
+  def test_convert_two_to_binary
+    assert_equal "10", NumberConverter.new.dec2bin(2)
   end
 end
 ```
 
-Run the tests and they should pass. Therefore, it's time for another round of refactoring.
+Run the tests and they should still pass. Therefore, it's time for another round of refactoring.
 
-One important aspect of tests to keep in mind is: we should have one test per behavior. If we look carefully, both tests we currently have are testing the same behavior, a simple case of converting an integer to its binary notation. So, I think both tests should be merged into one (and the test be renamed accordingly):
+One important aspect of tests to keep in mind is: we should have one test per behavior. If we look carefully, both tests we currently have are testing the same behavior, a simple case of converting an integer to its binary notation. So, I think both tests should be merged into one (and the test should be renamed accordingly):
 
 ```ruby
-class TestDec2Bin < Minitest::Test
+class TestNumberConverter < Minitest::Test
   def test_dec2bin
-    assert_equal "1000", dec2bin(8)
-    assert_equal "10", dec2bin(2)
+    assert_equal "1000", NumberConverter.new.dec2bin(8)
+    assert_equal "10", NumberConverter.new.dec2bin(2)
   end
 end
 ```
 
-Run the test and it should pass.
-
-Now we can ask ourselves if it makes sense to keep two assertions of the same behavior. Well, the second assertion did its job when we were exploring the behavior and it was useful. Now I think we don't need that anymore, so let's keep only one assertion.
-
-```ruby
-class TestDec2Bin < Minitest::Test
-  def test_dec2bin
-    assert_equal "1000", dec2bin(8)
-  end
-end
-```
-
-Run the test and it should pass. And we're done with this refactoring phase.
-
-Now let's use our current code in an application.
+Run the test and it should pass. I think for now we're done with this refactoring session.
 
 ### Source Control
 
 Now it's a good time to commit what we have:
 
 ```bash
-git add dec2bin_test.rb dec2bin.rb
+git add number_converter*.rb
 git commit -m 'feat(dec2bin): print numbers in binary notation'
 ```
 
@@ -404,12 +427,12 @@ Here are the contents to be put in the `d2b` file (explanation comes right away)
 ```ruby
 #!/usr/bin/env ruby
 
-require_relative "dec2bin"
+require_relative "number_converter"
 
 print "integer: "
 my_number = gets
 
-binary = dec2bin(my_number)
+binary = NumberConverter.new.dec2bin(my_number)
 puts "binary: #{binary}"
 ```
 
@@ -439,9 +462,13 @@ Nice. It's waiting for our input. Let's give it a number.
 ```
 $ ./d2b
 integer: 7
-/path/to/dec2bin.rb:2:in `to_s': wrong number of arguments (given 1, expected 0) (ArgumentError)
-        from /path/to/dec2bin.rb:2:in `dec2bin'
+/path/to/number_converter.rb:3:in `to_s': wrong number of arguments (given 1, expected 0) (ArgumentError)
+
+    number.to_s(2)
+                ^
+        from /path/to/number_converter.rb:3:in `dec2bin'
         from ./d2b:8:in `<main>'
+
 ```
 
 😳 How could this happen? We used TDD to code our function and it passed the tests!
@@ -454,48 +481,55 @@ Although TDD can reduce _a lot_ the appearance of bugs, _making sure_ your code 
 
 ### Debugging with `irb`
 
-After this kinda frustrating news, let's try to understand what's wrong on our code. Check the main part of the error message:
+After this frustrating news, let's try to understand what's wrong on our code. Check the main part of the error message:
 
 ```
-/path/to/dec2bin.rb:2:in `to_s': wrong number of arguments (given 1, expected 0) (ArgumentError)
+/path/to/number_converter.rb:3:in `to_s': wrong number of arguments (given 1, expected 0) (ArgumentError)
 ```
 
-The message says that the error happened in `dec2bin.rb:2`, which means in the 2nd line of the file.
+The message says that the error happened in `number_converter.rb:3`, which means in the 3rd line of the `number_converter.rb` file.
 
 ```ruby
-def dec2bin(number)
-  number.to_s(2) # 👈 ERROR HAPPENED HERE
+class NumberConverter
+  def dec2bin(number)
+    number.to_s(2) # 👈 ERROR HAPPENED HERE
+  end
 end
 ```
 
-The message also says that we passed a wrong number of arguments to the `to_s` method. But in the documentation we saw that `Integer#to_s` accepts an argument. 🤔 Uhm... Is that `number` really an `Integer`?
+The message also says that we passed a wrong number of arguments to the `to_s` method (given 1, expected 0). But in the documentation we saw that `Integer#to_s` accepts an argument. 🤔 Uhm... Is that `number` really an `Integer`?
 
 In order to check that we're going to turn again to one of our best friends: `irb`.
 
 Ruby provides a way to open an `irb` session from anywhere in your program using `binding.irb`. This is helpful for debugging and is exactly what we need now.
 
-Add `binding.irb` right before the buggy line. Your `dec2bin.rb` should look like this:
+Add `binding.irb` right before the buggy line. Your `number_converter.rb` should look like this:
 
 ```ruby
-def dec2bin(number)
-  binding.irb
-  number.to_s(2)
+class NumberConverter
+  def dec2bin(number)
+    binding.irb
+    number.to_s(2)
+  end
 end
 ```
 
 Now let's repeat the steps where we faced the error:
 
 ```
-$ ./d2b
+$ ./d2b 
 integer: 7
-From: /path/to/dec2bin.rb @ line 2 :
 
-    1: def dec2bin(number)
- => 2:   binding.irb
-    3:   number.to_s(2)
-    4: end
+From: /home/meleu/src/github/meleudotdev/repos/tdd-ruby/code/number-converter/number_converter.rb @ line 3 :
 
-irb(main):001:0>
+    1: class NumberConverter
+    2:   def dec2bin(number)
+ => 3:     binding.irb
+    4:     number.to_s(2)
+    5:   end
+    6: end
+
+irb(#<NumberConverter:0x00007f4ce...):001> 
 ```
 
 Now we're on the `irb` prompt, right before the point where the crash happened. How cool is that?! 🙂
@@ -517,12 +551,14 @@ Let's check our `d2b` again, adding some notes:
 ```ruby
 #!/usr/bin/env ruby
 
-require_relative "dec2bin"
+require_relative "number_converter"
 
 print "integer: "
-my_number = gets            # 👈 my_number IS ASSIGNED HERE
+my_number = gets
+# 👆 my_number IS ASSIGNED HERE
 
-binary = dec2bin(my_number) # 👈 dec2bin IS CALLED HERE
+#    dec2bin IS CALLED HERE 👇
+binary = NumberConverter.new.dec2bin(my_number)
 puts "binary: #{binary}"
 ```
 
@@ -549,26 +585,28 @@ Run the test and see if the crash was really replicated:
 
 ```
   1) Error:
-TestDec2Bin#test_convert_number_in_string:
+TestNumberConverter#test_call_dec2bin_with_a_string:
 ArgumentError: wrong number of arguments (given 1, expected 0)
-    /path/to/dec2bin.rb:2:in `to_s'
-    /path/to/dec2bin.rb:2:in `dec2bin'
-    dec2bin_test.rb:19:in `test_convert_number_in_string'
+    number_converter.rb:3:in `to_s'
+    number_converter.rb:3:in `dec2bin'
+    number_converter_test.rb:12:in `test_call_dec2bin_with_a_string'
 ```
 
 Nice! Now we can start working on a solution and quickly check if we're on the right path.
 
 ### Fixing the bug
 
-Fortunately we can easily solve this issue by converting the string to an Integer using the `String#to_i` method ([documentation](https://ruby-doc.org/current/String.html#method-i-to_i)). It's also fortunate that this method is also available for Integers ([documentation](https://ruby-doc.org/current/Integer.html#method-i-to_i)).
+Fortunately we can easily solve this issue by converting the string to an Integer using the `String#to_i` method ([documentation](https://ruby-doc.org/current/String.html#method-i-to_i)). It's also fortunate that this method is also available for Integers ([documentation](https://ruby-doc.org/current/Integer.html#method-i-to_i)), even if it doesn't do anything, it's useful for cases like this, where we don't want to add logic to handle data types.
 
 This is an example of how the Ruby's dynamism can promote rapid development. If we were coding with a strongly typed language, we would need to code different functions to allow receiving different data types. With Ruby we can code only one function and work on ways to handle the dynamic typing. As you can notice, everything is a trade-off (and if you're reading until here, you probably like Ruby's dynamism).
 
 In order to fix the bug we just need to chain `to_i` and `to_s`:
 
 ```ruby
-def dec2bin(number)
-  number.to_i.to_s(2)
+class NumberConverter
+  def dec2bin(number)
+    number.to_i.to_s(2)
+  end
 end
 ```
 
@@ -576,14 +614,29 @@ Run the tests and they should be passing now.
 
 Run the CLI again and it should work without crashing.
 
-## Source Control
+### Source Control
 
 As our repo already has the hello-world code from the previous chapter, let's specify the scope of the current changes in the commit message.
 
 ```bash
-git add dec2bin_test.rb dec2bin.rb d2b.rb
+git add number_converter*.rb d2b
 git commit -m 'feat(dec2bin): use #to_i before #to_s(2) & add a CLI'
 ```
+
+## Octal, Hexadecimal, etc.
+
+As an exercise, I suggest you to implement other converters for the `NumberConverter` class. For example:
+
+- dec2oct - a decimal to octal notation
+- dec2hex - a decimal to hexadecimal notation
+
+Always keep in mind the TDD cycle:
+
+- Write a test
+- Run the test, see it fails and check the error message
+- Write enough code to make the test pass
+- Refactor
+
 
 ## Key Concepts
 

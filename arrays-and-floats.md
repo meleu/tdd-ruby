@@ -58,7 +58,7 @@ For this calculation we need to:
 1. sum all the given numbers
 2. divide the sum by the amount of numbers
 
-As we have more than one step to solve this problem, we better write down what we need to do. This helps us stay focused.
+As we have more than one step to solve this problem, we better write down what we need to do. This helps us to stay focused.
 
 > - [ ] calculate the sum
 > - [ ] calculate the average
@@ -78,19 +78,19 @@ Let's focus on calculating the sum. As usual: test first.
 
 #### Write the test first
 
-Before spending mental energy thinking about how to implement the sum, let's focus on how we would like to call a function that already solves such problem.
+Before spending mental energy thinking about how to implement the sum, let's focus on how we would like to call a function that, hypothetically, already solves such problem.
 
-Here's what comes to my mind when I think about a function that returns the sum of the items in an array: `sum(array)`. Then, let's write the test in a file called `average_test.rb`:
+Let's call the class as `StatisticsCalculator` and the method would be simply `#sum`. With this in mind, let's write the test in a file called `statistics_calculator_test.rb`:
 
 ```ruby
-require 'minitest/autorun'
-require_relative 'average'
+require "minitest/autorun"
+require_relative "statistics_calculator"
 
-class AverageTest < Minitest::Test
+class TestStatisticsCalculator < Minitest::Test
   def test_sum_numbers_in_array
     numbers = [1, 2, 3]
-    actual = sum(numbers)
     expected = 6
+    actual = StatisticsCalculator.new.sum(numbers)
     assert_equal expected, actual
   end
 end
@@ -99,8 +99,8 @@ end
 Run the test and check the error.
 
 #### Write the minimal amount of code for the test to run
-
-By running the test, checking the error and fixing them, you should now have a file named `average.rb` with contents like this:
+ 
+Solve the error messages until the test **fails** without **errors**. By doing this you should now have a file named `statistics_calculator.rb` with contents like this:
 
 ```ruby
 def sum(numbers)
@@ -111,17 +111,19 @@ Now your test is failing with no errors.
 
 #### Write enough code to make the test pass
 
-When we have an array, it is very common to have to iterate over them, and the sum is a good example. We need to iterate over each element and add them in an accumulator.
+When we have an array, it is very common to have to iterate over them. Getting the sum numbers in an array is a good example, as we need to go through each element and add them in an accumulator.
 
-To iterate over each element of an array we use [the `Array#each` method](https://ruby-doc.org/current/Array.html#method-i-each), and to perform actions with the elements we also pass a block with a parameter (which we learned in the previous chapter).
+To iterate over each element we use [the `Array#each` method](https://ruby-doc.org/current/Array.html#method-i-each), and to perform actions with the elements we also pass a block with a parameter (which we learned in the previous chapter).
 
 So, to calculate the sum we do this:
 
 ```ruby
-def sum(numbers)
-  accumulator = 0
-  numbers.each { |n| accumulator += n }
-  accumulator
+class StatisticsCalculator
+  def sum(numbers)
+    accumulator = 0
+    numbers.each { |n| accumulator += n }
+    accumulator
+  end
 end
 ```
 
@@ -162,17 +164,22 @@ How could we refactor an oneliner like this?
 
 In this case my refactoring is: delete the function and the test!
 
-We must keep in mind that "code is liability". Each line of code in the code base has a cost and needs a reason to be kept there.
+We must keep in mind that "**code is liability**". Each line of code in the repository has a cost and needs a reason to be kept there.
 
 In this case I see no value in keeping a `sum` function just to be wrapper around the `Array#sum` call. 
 
-The same decision also applies to the tests. If I were doubtful about the `Array#sum` behavior, I would keep a test to validate it, but in this case I see no value in keeping one.
+The same decision also applies to the tests. The main benefit of keeping our tests is to give us confidence. If I were doubtful about the `Array#sum` behavior, I would keep a test to validate it, but I trust the Ruby language maintainers (otherwise I wouldn't build serious web applications on top of this technology). I also believe they have tests for `Array#sum`. Therefore I'll delegate to them the responsibility to keep it working.
 
-The main benefit of keeping our tests is to give us confidence. In this case, I trust the Ruby language maintainers (otherwise I wouldn't build serious web applications on top of this technology). I also believe they have tests for `Array#sum`. Therefore I'll delegate to them the responsibility to keep it working.
-
-So, the result of our refactoring is a completely empty `average.rb` file and an empty test class in `average_test.rb`, like this:
+So, the result of our refactoring is an empty class in `statistics_calculator.rb` file and an empty test class in `statistics_calculator_test.rb`, like this:
  
 ```ruby
+# statistics_calculator.rb
+class StatisticsCalculator
+end
+```
+
+```ruby
+# statistics_calculator_test.rb
 require 'minitest/autorun'
 require_relative 'average'
 
@@ -188,7 +195,7 @@ Our TODO list is now like this:
 
 ### Step 2: Calculate the average
 
-Let's think in an example:
+Let's do some basic math with a simple example:
 
 Given the numbers 1, 2, 3, and 4; we have
 
@@ -203,15 +210,17 @@ This seems to be a good example for our first test.
 Put this in your `average_test.rb`:
 
 ```ruby
-def test_average
-  numbers = [1, 2, 3, 4]
-  actual = average(numbers)
-  expected = 2.5
-  assert_equal expected, actual, "Given: #{numbers}"
+class TestStatisticsCalculator < Minitest::Test
+  def test_average
+    numbers = [1, 2, 3, 4]
+    expected = 2.5
+    actual = StatisticsCalculator.new.average(numbers)
+    assert_equal expected, actual, "Given: #{numbers}"
+  end
 end
 ```
 
-By the way, have you noticed that the assertion line is a bit different? Turns out that `assert_equal` method accepts a third (and optional) argument with a custom message to be shown when the assertion fails.
+Have you noticed that the assertion expression is a bit different? Turns out that `assert_equal` method accepts a third (and optional) argument with a custom message to be shown when the assertion fails.
 
 Sometimes it's useful to print a meaningful message when our assertion fails. It should help us to see what we're doing wrong. In this case we're printing the input numbers.
 
@@ -219,24 +228,29 @@ We're ready to run the tests and check the error messages.
 
 #### Write the minimal amount of code for the test to run
 
-You should end up with an `average.rb` like this:
+By following the cycle we've been practicing, you should end up with an `statistics_calculator.rb` like this:
 
 ```ruby
-def average(numbers)
+class StatisticsCalculator
+  def average(numbers)
+  end
 end
+
 ```
 
 Now your test should be failing with no errors, and with a clear message like this:
 
 ```
-Failure:
-AverageTest#test_average [average_test.rb:9]:
+  1) Failure:
+TestStatisticsCalculator#test_average [statistics_calculator_test.rb:8]:
 Given: [1, 2, 3, 4].
 Expected: 2.5
   Actual: nil
 ```
 
-Look that extra line showing the given numbers. That's the result of that third argument we gave to the `assert_equal` in our test.
+Look that extra line showing the given numbers. That's the result of that third argument we gave to the `assert_equal` in our test. This can be helpful so you can quickly check if your tests and assertions are correct.
+
+Now we can work on the actual implementation.
 
 #### Write enough code to make the test pass
 
@@ -254,8 +268,10 @@ You probably guessed right: `Array#length` or `Array#size`. Both do the same: re
 With this knowledge we can try our first implementation:
 
 ```ruby
-def average(numbers)
-  numbers.sum / numbers.length
+class StatisticsCalculator
+  def average(numbers)
+    numbers.sum / numbers.length
+  end
 end
 ```
 
@@ -310,13 +326,13 @@ In other words: `10 / 4` is a syntactic sugar for `10./(4)`.
 #=> 2
 ```
 
- If `/` "slash" is a method, then we have documentation for it! As we are calling it an Integer (`10`), we should look for [the Integer#/ documentation](https://ruby-doc.org/current/Integer.html#method-i-2F). And there we can see this description:
+ If `/` "slash" is a method, then we have documentation for it! As we are calling it in an Integer, we should look for [the Integer#/ documentation](https://ruby-doc.org/current/Integer.html#method-i-2F). And there we can see this description:
 
 > **self / numeric → numeric_result**
 >
 >Performs division; for integer `numeric`, truncates the result to an integer
 
-Oh, that's why our average function is not working properly! As the divisor is an integer, the result is truncated to an integer.
+That's why our average function is not working properly! As the divisor is an integer, the result is truncated to an integer.
 
 To solve this we just need to convert the divisor to a float. Let's confirm:
 
@@ -330,8 +346,10 @@ To solve this we just need to convert the divisor to a float. Let's confirm:
 Nice. Now we can fix our code:
 
 ```ruby
-def average(numbers)
-  numbers.sum / numbers.length.to_f
+class StatisticsCalculator
+  def average(numbers)
+    numbers.sum / numbers.length.to_f
+  end
 end
 ```
 
@@ -364,24 +382,29 @@ The numbers are 2, 3, and 5; then we have
 If we want to write a test for this case, how many decimal digits should we use? Let's see what happens with just 3 decimals:
 
 ```ruby
-def test_average_with_repeating_decimal
-  numbers = [2, 3, 5]
-  expected = 3.333
-  actual = average(numbers)
-  assert_equal expected, actual
+class TestStatisticsCalculator < Minitest::Test
+  # ...
+  
+  def test_average_with_repeating_decimal
+    numbers = [2, 3, 5]
+    expected = 3.333
+    actual = StatisticsCalculator.new.average(numbers)
+    assert_equal expected, actual, "Given: #{numbers}"
+  end
 end
 ```
 
 Running the tests generates this failure on my machine:
 
 ```
-Failure:
-AverageTest#test_average_with_repeating_decimal [average_test.rb:16]:
+  1) Failure:
+TestStatisticsCalculator#test_average_with_repeating_decimal [statistics_calculator_test.rb:16]:
+Given: [2, 3, 5].
 Expected: 3.333
   Actual: 3.3333333333333335
 ```
 
-As we can see, creating an assertion with Floats is not that straightforward. Fortunately we have an specific assertion to deal with Floats: `assert_in_delta`. And [it's documentation](https://ruby-doc.org/current/gems/minitest/Minitest/Assertions.html#method-i-assert_in_delta) is pretty descriptive:
+As we can see, creating an assertion with Floats is not that straightforward. Fortunately we have an specific assertion to deal with Floats: `assert_in_delta`. And [it's documentation](https://ruby-doc.org/current/gems/minitest/Minitest/Assertions.html#method-i-assert_in_delta) says:
 
 > **assert_in_delta(exp, act, delta = 0.001, msg = nil)**
 > 
@@ -392,19 +415,21 @@ Explaining in another way, it checks if the expected and the actual values are w
 Let's rewrite our test using this new assertion:
 
 ```ruby
-def test_average_with_repeating_decimal
-  numbers = [2, 3, 5]
-  expected = 3.333
-  actual = average(numbers)
-  assert_in_delta expected, actual, 0.001, "Given: #{numbers}"
+class TestStatisticsCalculator < Minitest::Test
+  # ...
+  
+  def test_average_with_repeating_decimal
+    numbers = [2, 3, 5]
+    expected = 3.333
+    actual = StatisticsCalculator.new.average(numbers)
+    assert_in_delta expected, actual, 0.001, "Given: #{numbers}"
+  end
 end
 ```
 
 If you run the test now it should pass.
 
-As a little exercise, change the return value of your `average` implementation (e.g.: return a hardcoded zero) and check the failure message.
-
-This test was added just to learn how to deal with repeating decimals and didn't require any change on our code (neither are we going to refactor it). Then let's update our TODO list.
+This test was added just to learn how to deal with repeating decimals and didn't require any change on our code. Then let's update our TODO list.
 
 > - [x] calculate the sum
 > - [x] calculate the average
@@ -447,3 +472,5 @@ This is a short list of the Array’s methods. Be sure to spend some time readin
 - Creating a list of tests we need to write is useful to keep our focus.
 - `assert_equal` accepts a third parameter where we can enrich the failure message.
 - `assert_in_delta` is a better assertion for comparing floats.
+
+By the way, spending sometime skimming [the Minitest assertions documentation](https://ruby-doc.org/current/gems/minitest/Minitest/Assertions.html) is recommended.

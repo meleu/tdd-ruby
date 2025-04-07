@@ -2,6 +2,7 @@
 
 - [Learn Ruby with TDD](README.md)
 - [Ruby tooling](ruby-tooling.md)
+- [Object-Oriented Design](ood.md)
 
 ## Fundamentals
 

@@ -10,15 +10,7 @@ The code in this book was tested with Ruby 3.2.2, and should work on any version
 
 ## Testing Framework
 
-The Ruby community has two main testing frameworks:
-
-- RSpec: a feature-rich testing framework that provides a Domain Specific Language for writing tests.
-- **Minitest**: a lightweight testing framework that provides utilities to write your tests using "pure Ruby"
-
-In this book we're going to use **Minitest**, for two reasons:
-
-1. it comes with the Ruby Standard Library.
-2. you only have to know ruby to use Minitest
+In this book we're going to use **Minitest**. It already comes with the Ruby Standard Library, so if you installed Ruby, you're ready to use Minitest.
 
 ## Ruby documentation
 
@@ -26,15 +18,15 @@ Bookmark this website: <https://ruby-doc.org/>
 
 It has the official documentation for the Ruby language and we're going to use it a lot.
 
-One good tip about using the official documentation is how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you to where you want. This notation is also frequently used in the Ruby literature.
+A good tip about the official documentation is how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you to where you want. This notation is also frequently used in the Ruby literature.
 
 Even when not prefixed with the class name, the `#` symbol used as a prefix implies that we're talking about a method. Example: `#puts`.
 
 ## Interactive Ruby Shell (`irb`)
 
-Using `irb` is an awesome way to quickly try things out, with no need to put code in a file, save it and call the file from the command line. When you're in `irb` you just need to type the code and check the results.
+Using `irb` is an awesome way to quickly try things out, with no need to put code in a file, save it and call the file from the command line. When you're in `irb` you just type Ruby code and check the results.
 
-In order to use the Interactive Ruby Shell you just need to type `irb` in your terminal. You should see something similar to this:
+In order to use the Interactive Ruby Shell, type `irb` in your terminal. You should see something similar to this:
 
 ```
 $ irb
@@ -42,9 +34,9 @@ $ irb
 irb(main):001:0> 
 ```
 
-This is the `irb` prompt, where you can type Ruby code and immediately see the results.
+This is the `irb` prompt, where you can type Ruby code and see the results.
 
-Just to experiment, let's try a "hello world":
+Let's try a "hello world":
 
 ```
 irb(main):001> puts "Hello, World!"
@@ -55,7 +47,7 @@ irb(main):002>
 
 If you got a result similar to this 👆, then everything is fine.
 
-The output there shows the printed string `Hello, World!` and then it shows the value returned by the `puts` method. Don't worry if you don't understand these concepts for now. In almost all chapters of this book you'll be invited to try things out on `irb`. So you'll soon be very familiar with it. For now it was just a test.
+The output there shows the printed string `Hello, World!` and then it shows the value returned by the `puts` method. Don't worry if you don't understand these concepts for now. In many chapters you'll be invited to try things out on `irb`. So you'll soon be very familiar with it. For now it was just a test.
 
 To exit the `irb` just type `exit`:
 
@@ -88,14 +80,21 @@ If you have RuboCop configured in your editor, you'll probably see some lint dia
 
 If your editor has a "format on save" feature, I suggest to let it disabled (at least while working in the first chapters).
 
+### Coding Assistants
+
+If you have coding assistants, like GitHub Copilot, on your editor, you should turn off it while going through the book. Otherwise it will ruin your learning. Using them while reading the book would produce an [illusion of competence](https://www.memory-improvement-tips.com/illusions-of-competence.html) and would be a waste of your time.
+
+I want you to leverage these kind of tools **after** learning what you're about to learn in this book.
+
+
 ## Before we start...
 
 In order to keep our code in a centralized directory, where we can easily go to whenever we want, let's create an environment variable named `TDD_RUBY_PATH` with the full path to the directory we'll use to save our code.
 
-In my case, I use `${HOME}/src/tdd-ruby-code`, then I would declare the variable like this:
+In my case, I use `${HOME}/code/tdd-ruby-code`, then I would declare the variable like this:
 
 ```bash
-export TDD_RUBY_PATH="${HOME}/src/tdd-ruby-code"
+export TDD_RUBY_PATH="${HOME}/code/tdd-ruby-code"
 ```
 
 I recommend you to put this 👆 line of code in your `.bashrc` or `.zshrc` file (or whatever file you use to configure your shell). This is going to be useful for when you want to quickly `cd $TDD_RUBY_PATH`.

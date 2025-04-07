@@ -17,44 +17,46 @@ Starting the `banner` project:
 ```bash
 # define TDD_RUBY_PATH in your shell configuration
 cd $TDD_RUBY_PATH
-mkdir banner
-cd banner
+mkdir string-decorator
+cd string-decorator
 ```
 
 Then let's start with the test.
 
 ### Write the test first
 
-Here's our first test:
+Here's our first test in a file called `string_decorator_test.rb`:
 
 ```ruby
-require 'minitest/autorun'
-require_relative 'banner'
+require "minitest/autorun"
+require_relative "string_decorator"
 
-class TestBanner < Minitest::Test
+class TestStringDecorator < Minitest::Test
   def test_banner
     expected = "====\ntext\n====\n"
-    assert_equal expected, banner('text')
+    assert_equal expected, StringDecorator.new.banner("text")
   end
 end
 ```
 
 Maybe you felt a little uncomfortable with that hard-to-read value assigned to `expected`. Yeah, me too.
 
-I think that mentally counting the amount of `=`s to put above and below the text is very error prone. It can make future maintainer's life worse (keep in mind that the future maintainer can be you). Let's find a better way to write that.
+I think that mentally counting the amount of `=` symbols to put above and below the text is very error prone. It can make future maintainer's life worse. Just to think that the future maintainer can be you, it should trigger a desire to find a better way to write that.
 
 #### Here Documents
 
 A [here document](https://ruby-doc.org/current/syntax/literals_rdoc.html#label-Here+Document+Literals) (aka heredoc) is a more comfortable way to read a multilinear block of text. In our case, as we want to check if the borders of the banner have the proper length in a quick glance, we would use a heredoc like this:
 
 ```ruby
-def test_banner
-  expected = <<~BANNER
-    ====
-    text
-    ====
-  BANNER
-  assert_equal expected, banner('text')
+class TestStringDecorator < Minitest::Test
+  def test_banner
+    expected = <<~BANNER
+      ====
+      text
+      ====
+    BANNER
+    assert_equal expected, StringDecorator.new.banner("text")
+  end
 end
 ```
 
@@ -67,20 +69,22 @@ Check the [official documentation](https://ruby-doc.org/current/syntax/literals_
 Running the test:
 
 ```
-banner_test.rb:2:in `require_relative': cannot load such file -- /path/to/banner (LoadError)
-        from banner_test.rb:2:in `<main>'
+string_decorator_test.rb:2:in `require_relative': cannot load such file -- /path/to/string_decorator (LoadError)
+        from string_decorator_test.rb:2:in `<main>'
 ```
 
 As expected, we got an **error** (not a **failure**).
 
 *Keep the discipline!* You don't need to know anything new to make the test fail properly.
 
-All you need to do right now is write enough code to make the test **fail** with no **errors**.
+All you need to do right now is write enough code to make the test _**fail** with no **errors**_.
 
-If you let the error messages drive the development you'll end up with a file named `banner.rb` with this content:
+If you let the error messages drive the development you'll end up with a file named `string_decorator.rb` with this content:
 
 ```ruby
-def banner(text)
+class StringDecorator
+  def banner(text)
+  end
 end
 ```
 
@@ -91,7 +95,9 @@ Run the test and now it should **fail** with no errors.
 In order to create the banner we need:
 
 1. check how many characters there are in the given string
-2. put the `=` character the same amount of times as the length of the given string, above and below the string
+2. print, in a line, the `=` character the same amount of times as the length of the given string
+3. print the given string in a new line
+4. print again the same amount of `=` characters in a new line
 
 #### String length
 
@@ -182,7 +188,7 @@ Although it's possible to append contents to a string variable with the `+=` ope
 #=> "Hello, meleu"
 ```
 
-The final result can look like the same, but there are subtle differences between `+=` and `<<`. The most notable one is that using `<<` has a better performance, specially when used in a loop, which is our case. Let's stick with the `<<`.
+The final result can look like the same, but there are subtle differences between `+=` and `<<`. The most notable one is that using `<<` has a better performance, specially when used in a loop, which is our case. So, let's stick with the `<<` operator.
 
 > [This StackOverflow Q&A](https://stackoverflow.com/q/4684446) has some good answers about the differences between `+=` and `<<`. Including some code where you can prove the difference in performance.
 
@@ -200,19 +206,22 @@ Let's recap what we've just learned:
 Combining these techniques we can create a text banner function like this:
 
 ```ruby
-def banner(text)
-  # create an empty string
-  border = ""
+class StringDecorator
+  def banner(text)
+    # create an empty string
+    border = ""
 
-  # get the text length and call the
-  # .times method to create a loop
-  text.length.times do
-    border << '=' # appending '=' to the border
+    # get the text length and call the
+    # .times method to create a loop
+    text.length.times do
+      border << "=" # appending '=' to the border
+    end
+
+    # interpolating the border before and after the text
+    "#{border}\n#{text}\n#{border}\n"
   end
-
-  # interpolating the border before and after the text
-  "#{border}\n#{text}\n#{border}\n"
 end
+
 ```
 
 I've put some comments just to explain what we're doing now. In the refactor phase we're going to clean them up.
@@ -253,10 +262,12 @@ Run this 👆 in `irb` and confirm.
 With this new knowledge we can make our code shorter:
 
 ```ruby
-def banner(text)
-  border = ""
-  text.length.times { border << '=' }
-  "#{border}\n#{text}\n#{border}\n"
+class StringDecorator
+  def banner(text)
+    border = ""
+    text.length.times { border << "=" }
+    "#{border}\n#{text}\n#{border}\n"
+  end
 end
 ```
 
@@ -276,13 +287,16 @@ This is an example of how expressive the Ruby language can be.
 With this knowledge we can refactor our banner function so it doesn't even need a loop:
 
 ```ruby
-def banner(text)
-  border = '=' * text.length
-  "#{border}\n#{text}\n#{border}\n"
+class StringDecorator
+  def banner(text)
+    border = "=" * text.length
+    "#{border}\n#{text}\n#{border}\n"
+  end
 end
+
 ```
 
-Run the test to confirm this is working as expected, and then we're done with this feature.
+Run the test to confirm this code is working as expected, and then we're done with this feature.
 
 ### Source Control
 
@@ -291,19 +305,19 @@ git add banner_test.rb banner.rb
 git commit -m 'feat(banner): put text in a banner'
 ```
 
-## New requirements
+## A bug report arrives
 
 Let's imagine we released our software to the world. This is when the "real work" begins: maintaining our software. We start to see our code being used in ways we didn't anticipate, and bugs start to appear.
 
 A few days after publishing our code a user submitted a bug report saying that it doesn't work with multiline strings.
 
-When we receive a bug report the very first thing to do is to reproduce it. Let's do it in `irb` (be sure to be in the same directory as your code):
+When we receive a bug report the very first thing to do is to go reproduce it. Let's do it in `irb` (be sure to be in the same directory as your code):
 
 ```ruby
 # IRB SESSION #
 
 > # yeah! we can require code in irb too!
-> require_relative 'banner'
+> require_relative 'string_decorator'
 #=> true
 
 > text = "this is\na multiline\nstring"
@@ -316,7 +330,7 @@ a multiline
 string
 #=> nil
 
-> puts banner(text)
+> puts StringDecorator.new.banner(text)
 ==========================
 this is
 a multiline
@@ -340,16 +354,21 @@ Once we confirmed that the bug report is valid. Then let's ~~fix it~~ reproduce 
 We expect the borders to be as long as the longest line, then let's write a test for it:
 
 ```ruby
-def test_banner_with_multiple_lines
-  expected = <<~BANNER
-    =============
-    text
-    with multiple
-    lines
-    =============
-  BANNER
-  text = "text\nwith multiple\nlines"
-  assert_equal expected, banner(text)
+# ...
+class TestStringDecorator < Minitest::Test
+  # ...
+  
+  def test_banner_with_multiple_lines
+    expected = <<~BANNER
+      =============
+      text
+      with multiple
+      lines
+      =============
+    BANNER
+    text = "text\nwith multiple\nlines"
+    assert_equal expected, StringDecorator.new.banner(text)
+  end
 end
 ```
 
@@ -357,7 +376,7 @@ Run the test to see the error/failure message:
 
 ```
   1) Failure:
-TestBanner#test_banner_with_multiple_lines [banner_test.rb:25]:
+TestStringDecorator#test_banner_with_multiple_lines [string_decorator_test.rb:23]:
 --- expected
 +++ actual
 @@ -1,6 +1,6 @@
@@ -385,7 +404,7 @@ If our border needs to be as long as the longest line in the string, we need a w
 
 In the String class page we can see [a method called `#each_line`](https://ruby-doc.org/current/String.html#method-i-each_line).
 
-When we call `String#each_line` giving a block to it, it creates substrings that are the result of splitting the original string at each occurrence of a new line. The new thing for us here is that `#each_line` needs a place (a variable) to where it puts the created substring. In this case we need to use a block with a parameter.
+When we call `String#each_line` giving a block to it, it creates substrings that are the result of splitting the original string at each occurrence of a new line. The new thing for us here is that `#each_line` needs a place (a variable) to where it puts the created substring. In this case we need to use a **block with a parameter**.
 
 #### Block Parameters
 
@@ -408,7 +427,7 @@ That looks promising! 🙂
 
 #### Longest line
 
-Let's use what we've learned to check the longest line.
+Let's use what we've learned to check the longest line. Going back to our `string_decorator.rb`:
 
 ```ruby
 def banner(text)
@@ -463,9 +482,16 @@ We could see that in our `irb` session:
 #=> "multi\nline\nstring"
 ```
 
-So, in order to accurately get the length of a line we must ignore the trailing newline character. Fortunately we ha method for that: [String#chomp](https://ruby-doc.org/current/String.html#method-i-chomp).
+So, in order to accurately get the length of a line we must ignore the trailing newline character. Fortunately we have method for that: [String#chomp](https://ruby-doc.org/current/String.html#method-i-chomp). Let's check in `irb`:
 
-This time you check by yourself on `irb`. Try it with a string like `"meleu\n"`.
+```ruby
+# IRB SESSION #
+
+> "hello\n".chomp
+#=> "hello"
+```
+
+Great, that's what we want.
 
 Here's the new version of our code using `#chomp`:
 
@@ -498,18 +524,22 @@ Unfortunately real world is not that simple. We found a need to handle the case 
 We need to proactively fight against this increasing complexity. In our case here we're going to achieve this by delegating the longest-line-detection logic to a separate function
 
 ```ruby
-def banner(text)
-  border = '=' * max_line_length(text)
-  "#{border}\n#{text}\n#{border}\n"
-end
-
-def max_line_length(text)
-  max = 0
-  text.each_line do |line|
-    length = line.chomp.length
-    max = length if length > max
+class StringDecorator
+  def banner(text)
+    border = "=" * max_line_length(text)
+    "#{border}\n#{text}\n#{border}\n"
   end
-  max
+
+  private
+
+  def max_line_length(text)
+    max = 0
+    text.each_line do |line|
+      line_length = line.chomp.length
+      max = line_length if line_length > max
+    end
+    max
+  end
 end
 ```
 
@@ -525,6 +555,8 @@ git commit -m 'fix(banner): handle multiline text'
 ```
 
 ## Key Concepts
+
+We learned a good amount of things for such a simple functionality, didn't we? Let's recap!
 
 ### Ruby
 
