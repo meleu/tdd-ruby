@@ -106,7 +106,7 @@ We got an error...
 
 ### Write the minimal amount of code for the test to run
 
-By writing the minimal amount of code for the test to pass we're letting the tests guide our development. That's a core concept of Test-Driven Development. The main benefits with this principle is to take small steps and prevent over-engineering your implementation.
+By writing the minimal amount of code for the test to run we're letting the tests guide our development. That's a core concept of Test-Driven Development. The main benefits with this principle is to take small steps and prevent over-engineering your implementation.
 
 Back to the error message:
 
@@ -118,10 +118,10 @@ We're requiring a file that doesn't exist. Then let's create the file, run the t
 
 ```
 $ # creating the file
-$ touch dec2bin.rb
+$ touch number_converter.rb
 
 $ # running the test
-$ ruby dec2bin_test.rb
+$ ruby number_converter_test.rb
 
 # Running:
 
