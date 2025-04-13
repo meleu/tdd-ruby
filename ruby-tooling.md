@@ -8,6 +8,13 @@ I prefer using a runtime version manager like [asdf](https://asdf-vm.com/) or [m
 
 The code in this book was tested with Ruby 3.2.2, and should work on any version 3.1+.
 
+Open up your terminal and run `ruby --version`. You should see something like this:
+
+```
+$ ruby --version
+ruby 3.2.2
+```
+
 ## Testing Framework
 
 In this book we're going to use **Minitest**. It already comes with the Ruby Standard Library, so if you installed Ruby, you're ready to use Minitest.
@@ -89,7 +96,7 @@ I want you to leverage these kind of tools **after** learning what you're about 
 
 ## Before we start...
 
-In order to keep our code in a centralized directory, where we can easily go to whenever we want, let's create an environment variable named `TDD_RUBY_PATH` with the full path to the directory we'll use to save our code.
+In order to keep our code in a centralized directory, where we can easily go to whenever we want, let's create an environment variable named `TDD_RUBY_PATH`. In this variable we add the full path to the directory we'll use to save our code.
 
 In my case, I use `${HOME}/code/tdd-ruby-code`, then I would declare the variable like this:
 
