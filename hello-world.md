@@ -15,7 +15,7 @@ mkdir hello
 cd hello
 ```
 
-Create a new file called `hello.rb` and put the following code inside it:
+Open your favorite editor, create a new file called `hello.rb` and put the following code inside it:
 
 ```ruby
 puts("Hello, World")
@@ -35,7 +35,7 @@ How do you test this program?
 
 The answer for this question is our first example of how TDD promotes software design.
 
-To make our program testable it is good to separate our "domain" code from the outside world (side-effects). In our program the greeting string is our domain, and the `puts` is a side effect (printing to the standard output).
+To make our program testable it is good to separate our "domain[^1]" code from the outside world (side-effects[^2]). In our program the greeting string is our domain, and the `puts` is a side effect (printing to the standard output).
 
 Let's separate these concerns so we can easily test our domain's code.
 
@@ -73,7 +73,7 @@ greeter = Greeter.new
 puts greeter.hello
 ```
 
-Another Ruby syntactic sugar is that the last evaluated expression of a method is always returned. Therefore the use of the `return` in the last line of that method is unnecessary.
+Another Ruby syntactic sugar[^3] is that the last evaluated expression of a method is always returned. Therefore the use of the `return` in the last line of that method is unnecessary.
 
 So, let's clear our code a little more:
 
@@ -732,3 +732,9 @@ We've gone from `greeter.hello` to `greeter.hello("name")` and then to `spanish_
 Of course this is trivial compared to "real-world" software, but the principles still stand.
 
 TDD is a skill that needs practice to develop, and by breaking problems down into smaller components that you can test, you will have a much easier time writing _and reading_ software.
+
+[^1]: Domain: in software engineering the **domain** represents the target subject of a specific programming project.
+
+[^2]: When we invoke a function (or method), we usually give an input and expect a value to be returned. When the function has any effect other than its primary effect of returning a value, it's said that it has a **side-effect**. Printing a string is considered a side-effect because it interacts with the external environment by sending output to a display or console. This action changes the state of the system's output device, which is outside the function's local scope.
+
+[^3]: **Syntactic sugar** is a syntax within a programming language that is designed to make things easier to read or to express.

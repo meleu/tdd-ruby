@@ -4,7 +4,7 @@ In the introduction of this book I told that we'll inevitably talk about **Objec
 
 In this chapter we'll see a really short description of these concepts. And apply them in the context of the Ruby language.
 
-Note that the code shown in this chapter is just an illustration of how Ruby code looks like. Don't worry if you're not familiar with that, a more detailed explanation comes in the next chapter.
+Note that the code shown in this chapter is just an illustration of how Ruby code looks like. Don't worry if you're not familiar with that, more detailed explanations come through the book.
 
 ## What is Software Design?
 
