@@ -2,7 +2,7 @@
 
 ⚠ **This is a work in progress by [meleu](https://github.com/meleu)!** ⚠
 
-This book aims to teach you **Ruby** and **Test-Driven Development** (spoiler: we're going to use **Minitest** as the testing framework).
+This book aims to teach you **Ruby** and **Test-Driven Development**.
 
 Since we use Ruby, it's inevitable that we also talk about **Object-Oriented Programming** (OOP). Also, as we use TDD, it's inevitable that we're going to talk about **Software Design**.
 
@@ -11,7 +11,6 @@ Since we use Ruby, it's inevitable that we also talk about **Object-Oriented Pro
 ### Why Ruby?
 
 Ruby has an elegant syntax that is natural to read and easy to write. It offers an extremely productive ecosystem where we can quickly build a product and put it online.
-
 
 ### Why TDD?
 
@@ -28,7 +27,6 @@ And currently, there's an even stronger reason to use TDD:
 
 With AIs writing code much faster than humans, such activity becomes cheaper. This leads me to a conclusion that **the real value is less in the code, and more in the tests**. Your ability to convert real world requirements into executable tests will make you more productive and a valuable professional.
 
-
 ## What you should expect
 
 - Explore the Ruby language by writing tests.
@@ -44,7 +42,6 @@ You'll notice that the first programs are really simple. That's intentional. The
 
 If I used "real world problems", we would need to spend brain power understanding the problem's domain and then learn the techniques. That would be tiresome and confusing. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have at hand.
 
-
 ## Who this is for
 
 - People who are interested in picking up Ruby.
@@ -54,7 +51,6 @@ I assume you already wrote some code (any language) and understand the basic con
 
 It's also expected that you're comfortable using the terminal (or at least not scared to use it).
 
-
 ## What you'll need
 
 - A computer with a Unix-like operating system (Linux, MacOS or Windows with WSL)
@@ -62,11 +58,9 @@ It's also expected that you're comfortable using the terminal (or at least not s
 - A text editor
 - A terminal
 
-
 ## Feedback
 
 Open issues or submit Pull Requests in [this book's repository](https://github.com/meleu/tdd-ruby).
-
 
 ## Credits
 
