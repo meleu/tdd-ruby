@@ -17,8 +17,16 @@ ruby 3.2.2
 
 ## Minitest
 
-We're going to use **Minitest**. It already comes with the Ruby Standard Library, so if you installed Ruby, you're ready to use Minitest.
+In this book we use **Minitest**.
 
+### Why Minitest?
+
+1. you only have to know Ruby to use Minitest
+2. it comes with the Ruby Standard Library
+
+When I first tried to learn about testing in Ruby I was influenced by the information that most job opportunities require RSpec. Then I noticed I spent more energy learning the "RSpec language" than the principles of TDD. I didn't enjoy the experience and I hope you don't feel this pain too.
+
+Just keep in mind that the principles you'll learn here, are easily applicable with RSpec too.
 
 ## Linter and Formatter
 

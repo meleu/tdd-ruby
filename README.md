@@ -28,14 +28,6 @@ And currently, there's an even stronger reason to use TDD:
 
 With AIs writing code much faster than humans, such activity becomes cheaper. This leads me to a conclusion that **the real value is less in the code, and more in the tests**. Your ability to convert real world requirements into executable tests will make you more productive and a valuable professional.
 
-### Why Minitest?
-
-1. you only have to know Ruby to use Minitest
-2. it comes with the Ruby Standard Library
-
-When I first tried to learn about testing in Ruby I was influenced by the information that most job opportunities require RSpec. Then I noticed I spent more energy learning the "RSpec language" than the principles of TDD. I didn't enjoy the experience and I hope you don't feel this pain too.
-
-Just keep in mind that with the testing principles you'll learn here, you'll be able to easily apply with RSpec, if you need to.
 
 ## What you should expect
 
