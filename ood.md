@@ -1,10 +1,15 @@
+---
+dg-publish: false
+---
 # Object-Oriented Design
 
-In the introduction of this book I told that we'll inevitably talk about **Object-Oriented Programming** (OOP) and **Software Design**. The combination of these concepts can be called **Object-Oriented Design**.
+> **NOTE**:
+>
+> If you're here just for the TDD parts, and are already familiar with OOP in Ruby, and concepts like constructor method, instance variables, and sending messages, then you can safely skip this chapter.
 
-In this chapter we'll see a really short description of these concepts. And apply them in the context of the Ruby language.
+In the introduction of this book I told that we'll inevitably talk about **Object-Oriented Programming** (OOP) and **Software Design**. The combination of these concepts can be called **Object-Oriented Design**. In this chapter we'll see a short description of these concepts. And apply them in the context of the Ruby language.
 
-Note that the code shown in this chapter is just an illustration of how Ruby code looks like. Don't worry if you're not familiar with that, more detailed explanations come through the book.
+Note that the code shown in this chapter is just an illustration of how Ruby code looks like. Don't worry if you're not familiar with that, you'll learn all that as you progress through the book.
 
 ## What is Software Design?
 
@@ -103,6 +108,7 @@ If you are coming from another OOP language, you're probably used to use the ter
 When an object receives a message, it looks into its own class for a corresponding method. If found, the method is invoked, if not, an exception is raised (but that is a topic for a later chapter).
 
 ## Key Concepts
+
 
 In this chapter we learned that Software Design is basically the way we organize our code.
 

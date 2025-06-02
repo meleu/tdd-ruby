@@ -15,8 +15,6 @@ this is a banner
 Starting the `banner` project:
 
 ```bash
-# define TDD_RUBY_PATH in your shell configuration
-cd $TDD_RUBY_PATH
 mkdir string-decorator
 cd string-decorator
 ```
@@ -88,7 +86,7 @@ class StringDecorator
 end
 ```
 
-Run the test and now it should **fail** with no errors.
+The test now should **fail** with no errors.
 
 ### Write enough code to make the test pass
 
@@ -228,11 +226,9 @@ I've put some comments just to explain what we're doing now. In the refactor pha
 
 Maybe the only thing that require an extra explanation is the `text.length.times` expression. We can use that because `String#length` returns an Integer, and then we can use `Integer#times`, which is what creates the loop
 
-Let's run the test:
+Test results:
 
 ```
-Run options: --seed 15260
-
 # Running:
 
 .
@@ -296,14 +292,8 @@ end
 
 ```
 
-Run the test to confirm this code is working as expected, and then we're done with this feature.
+The test should now confirm this code is working as expected, and then we're done with this feature (remember to commit your changes).
 
-### Source Control
-
-```bash
-git add banner_test.rb banner.rb
-git commit -m 'feat(banner): put text in a banner'
-```
 
 ## A bug report arrives
 
@@ -372,7 +362,7 @@ class TestStringDecorator < Minitest::Test
 end
 ```
 
-Run the test to see the error/failure message:
+The test should show this failure message:
 
 ```
   1) Failure:
@@ -545,14 +535,7 @@ end
 
 Run the tests and they should pass.
 
-For now I'm happy with this version. So, let's move on.
-
-### Source Control
-
-```bash
-git add banner_test.rb banner.rb
-git commit -m 'fix(banner): handle multiline text'
-```
+For now I'm happy with this version. So, commit your changes and let's wrap up.
 
 ## Key Concepts
 

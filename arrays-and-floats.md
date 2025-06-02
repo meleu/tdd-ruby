@@ -66,8 +66,6 @@ As we have more than one step to solve this problem, we better write down what w
 Good. We can now start the project:
 
 ```bash
-# TDD_RUBY_PATH must be defined
-cd $TDD_RUBY_PATH
 mkdir average
 cd average
 ```
@@ -275,7 +273,8 @@ class StatisticsCalculator
 end
 ```
 
-If we run the test we see this failure:
+Test failure message:
+
 ```
 Failure:
 AverageTest#test_simple_average [average_test.rb:9]:
@@ -394,7 +393,7 @@ class TestStatisticsCalculator < Minitest::Test
 end
 ```
 
-Running the tests generates this failure on my machine:
+The tests results in a failure like this:
 
 ```
   1) Failure:
@@ -435,12 +434,8 @@ This test was added just to learn how to deal with repeating decimals and didn't
 > - [x] calculate the average
 > - [x] dealing with repeating decimal numbers
 
-### Source Control
+If you're doing version control, that's a good time to commit your changes.
 
-```bash
-git add average_test.rb average.rb
-git commit -m 'feat(average): add average function'
-```
 
 ## Other useful Array methods
 

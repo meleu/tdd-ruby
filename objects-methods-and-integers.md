@@ -28,8 +28,6 @@ If you need more information on this topic, [this Wikipedia page](https://simple
 The very first thing is to create a directory for us to work:
 
 ```bash
-# remember to define TDD_RUBY_PATH in your shell configuration
-cd $TDD_RUBY_PATH
 mkdir number-converter
 cd number-converter
 ```
@@ -95,9 +93,9 @@ end
 
 Run this test and check the error message.
 
-```
-$ ruby number_converter_test.rb
+> Remember: you must either use the keyboard shortcut to trigger the test or use `rerun -x -- ruby number_converter_test.rb`.
 
+```
 number_converter_test.rb:2:in `require_relative': cannot load such file -- /path/to/number-converter/number_converter (LoadError)
         from number_converter_test.rb:2:in `<main>'
 ```
@@ -114,15 +112,11 @@ Back to the error message:
 number_converter_test.rb:2:in `require_relative': cannot load such file -- /path/to/number-converter/number_converter (LoadError)
 ```
 
-We're requiring a file that doesn't exist. Then let's create the file, run the test again and see the next error:
+We're requiring a file that doesn't exist.
+
+Create an empty file named `number_converter.rb`, and check the next test results:
 
 ```
-$ # creating the file
-$ touch number_converter.rb
-
-$ # running the test
-$ ruby number_converter_test.rb
-
 # Running:
 
 E
@@ -146,7 +140,7 @@ class NumberConverter
 end
 ```
 
-By running the test again, we see this error:
+New error message:
 
 ```
   1) Error:
@@ -164,7 +158,7 @@ class NumberConverter
 end
 ```
 
-Run the test, check the message:
+New error message:
 
 ```
   1) Error:
@@ -183,7 +177,7 @@ class NumberConverter
 end
 ```
 
-Run the test, check the message:
+Now we have a **failure** message:
 
 ```
   1) Failure:
@@ -192,14 +186,9 @@ Expected: "1000"
   Actual: nil
 ```
 
-Now our test is finally running with no errors! It's now failing, but at least it has no errors. We're almost there!
+Our test is finally running with no errors! It's failing, but at least it has no errors. We're almost there!
 
-You may be thinking that you're wasting your time in this tedious loop of running the test, checking the error message and writing the minimal amount of code to fix the error message. I have two points about this practice:
-
-- It is a nice way to prevent over-engineering - your tests are the requirements in form of code, and your software just needs to meet such requirements.
-- You'll soon find ways to automatically run tests right after saving your file.
-
-Even if my arguments are not convincing you, please stick with this practice while we're here.
+You may be thinking that you're wasting your time in this tedious loop of checking the test error message and writing the minimal amount of code to fix the error message. The point here is that it is a nice way to prevent over-engineering. Your tests are the "executable requirements", and your software just needs to meet such requirements.
 
 ### Write enough code to make the test pass
 
@@ -232,7 +221,7 @@ class TestNumberConverter < Minitest::Test
 end
 ```
 
-Running the tests:
+Test results:
 
 ```
 # Running:
@@ -326,7 +315,7 @@ class NumberConverter
 end
 ```
 
-Running the tests:
+Results:
 
 ```
 # Running:
@@ -402,17 +391,10 @@ class TestNumberConverter < Minitest::Test
   end
 end
 ```
+ 
+The tests should be passing now, and I think for now we're done with this refactoring session.
 
-Run the test and it should pass. I think for now we're done with this refactoring session.
-
-### Source Control
-
-Now it's a good time to commit what we have:
-
-```bash
-git add number_converter*.rb
-git commit -m 'feat(dec2bin): print numbers in binary notation'
-```
+Commit your changes and let's move on.
 
 ## d2b CLI
 
@@ -614,14 +596,7 @@ Run the tests and they should be passing now.
 
 Run the CLI again and it should work without crashing.
 
-### Source Control
-
-As our repo already has the hello-world code from the previous chapter, let's specify the scope of the current changes in the commit message.
-
-```bash
-git add number_converter*.rb d2b
-git commit -m 'feat(dec2bin): use #to_i before #to_s(2) & add a CLI'
-```
+This is a good time to commit your changes.
 
 ## Octal, Hexadecimal, etc.
 

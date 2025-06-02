@@ -5,9 +5,6 @@ It is traditional for your first program in a new language to be [Hello, World](
 Open your terminal and create a `hello` directory:
 
 ```bash
-# the env var we created in the previous chapter
-cd $TDD_RUBY_PATH
-
 # create the directory
 mkdir hello
 
@@ -35,19 +32,21 @@ How do you test this program?
 
 The answer for this question is our first example of how TDD promotes software design.
 
-To make our program testable it is good to separate our "domain[^1]" code from the outside world (side-effects[^2]). In our program the greeting string is our domain, and the `puts` is a side effect (printing to the standard output).
+To make our program testable it is good to separate our "domain[^1]" code from the outside world (side-effects[^2]). In our program the greeting string is our domain, and the `puts` is a side effect (printing the string on the screen).
 
-Let's separate these concerns so we can easily test our domain's code.
+Imagine that instead of printing the greeting on the screen we wanted to send the string over the network as a response to a HTTP request. If our domain (the construction of the greeting string) is properly separated, we can easily reuse it in different scenarios. That's the main benefit of separating these concerns. So, let's do it.
 
 As we want to use Object-Oriented Design, we're going to create a class named `Greeter` with a method named `#hello` to generate the string with the greeting. Now our code should look like this:
 
 ```ruby
+# this is our domain
 class Greeter
   def hello()
     return("Hello, World")
   end
 end
 
+# here our domain is being used
 greeter = Greeter.new()
 puts(greeter.hello())
 ```
@@ -121,7 +120,7 @@ Just to check if everything is fine, type `ruby hello.rb` in your terminal again
 
 Now create a new file called `greeter_test.rb` where we are going to write tests for our `Greeter` class.
 
-Don't worry if you don't understand everything. After writing and running this test file I'll explain this code.
+Don't worry if you don't understand everything. After writing and running this test file I'll explain the code.
 
 ```ruby
 require 'minitest/autorun'
@@ -187,7 +186,7 @@ class TestGreeter < Minitest::Test
 end
 ```
 
-The concept of class and subclass will be explained in another moment. For now just keep in mind that when we create the `TestGreeter` as a subclass of `Minitest::Test`, this means that `TestGreeter` inherits the behavior defined in `Minitest::Test`.
+The concept of subclass will be explained in another moment. For now just keep in mind that when we create the `TestGreeter` as a subclass of `Minitest::Test`, this means that `TestGreeter` inherits the behavior defined in `Minitest::Test`.
 
 #### The actual test method
 
@@ -202,21 +201,23 @@ def test_say_hello_world
 end
 ```
 
-We create a greeter object, then call the `hello` method, then define the expected result, and then finally assert if the expected result is equal to the actual result.
+We create a greeter object, then call the `hello` method, then define the expected result, and finally assert if the expected result is equal to the actual one.
 
-When we ran this test it passed, which is nice. Now let's move on...
+When we ran this test it passed, which is nice. But we didn't do Test-Driven Development.
+
+We wrote the test _after_ the code had been written, so that you could get an example of how to write a class, a method and create a test for it. Now we're going to **delete the test we just wrote** a start a fresh one.
+
+From this point on, we will be _writing tests first_, and then the implementation (usually called _production code_). This is the base of Test-Driven Development and allows us to make sure our test is truly testing what we want. When you retrospectively write tests, there is the risk that your test may continue to pass even if the code doesn't work as intended.
 
 ## Hello, YOU
 
-In the last example, we wrote the test _after_ the code had been written. We did this so that you could get an example of how to write a class, a method and create a test for it. Now we're going to delete that test we just wrote a start a fresh one. From this point on, we will be _writing tests first_, and then the implementation (usually called _production code_).
+In this fresh start, we're not just repeat what we just did. Let's start with a different requirement.
 
-This is basic test-driven development and allows us to make sure our test is truly testing what we want. When you retrospectively write tests, there is the risk that your test may continue to pass even if the code doesn't work as intended.
-
-Our next requirement is to specify the recipient of the greeting. Let's start by capturing these requirements in a test (remember to delete the previous one). The `greeter_test.rb` now looks like this:
+Let's create a Greeter where we must specify the recipient of the greeting. We start by capturing these requirements in a test (remember to delete the previous one). The `greeter_test.rb` now looks like this:
 
 ```ruby
-require 'minitest/autorun'
-require_relative 'greeter'
+require "minitest/autorun"
+require_relative "greeter"
 
 class TestGreeter < Minitest::Test
   def test_hello_to_people
@@ -228,7 +229,15 @@ class TestGreeter < Minitest::Test
 end
 ```
 
-Now run `ruby greeter_test.rb` and you should see an error like this:
+> #### Quickly run tests
+> 
+> At this point you should be familiar with a way to quickly trigger the test. If you know how to do it in your code editor, that's perfect! Otherwise, I recommend using the `rerun`, as I recommended in the [Ruby Tooling](ruby-tooling.md#run-tests-quickly) chapter. If that's your case, you should dedicate a terminal for running tests and execute :
+> 
+> ```bash
+> rerun -x -- ruby hello_test.rb
+> ```
+
+After running the test you should see an error like this:
 
 ```
   1) Error:
@@ -252,7 +261,7 @@ class Greeter
 end
 ```
 
-If you try and run your tests again, you should see a failure with this message:
+Now you should see a failure with this message:
 
 ```
   1) Failure:
@@ -275,17 +284,11 @@ When you run the tests now, it should pass.
 
 Normally, as part of the TDD cycle, we should now _refactor_.
 
-
 ### A note on source control
 
-At this point, we have working software backed by a test. It's a good time to commit our code:
+At this point, we have working software backed by a test. It's a good time to commit our code.
 
-```bash
-git add hello.rb greeter.rb greeter_test.rb
-git commit -m 'wip: hello-world'
-```
-
-Don't push to `main` though, we are going to refactor next. It is nice to commit at this point in case you somehow get into a mess with refactoring - you can always go back to the working version.
+Don't push to `main` though, we are going to refactor next. Regardless, it is nice to commit at this point in case you somehow get into a mess with refactoring - you can always go back to the working version.
 
 ### Refactor: string interpolation
 
@@ -297,7 +300,7 @@ def hello(name)
 end
 ```
 
-Run the test and it should pass.
+Now the test should pass.
 
 ## Hello, world... again
 
@@ -320,7 +323,7 @@ end
 
 Do note that the test method now have a descriptive (and long) name. It's important to give descriptive names to your tests, so you can know what to do when they fail.
 
-After running the tests we'll see an error message like this:
+With that test we'll see an error message like this:
 
 ```
   1) Error:
@@ -362,16 +365,8 @@ Run the tests and you should see a successful run. It satisfies the new requirem
 
 It is important that your tests are _clear specifications_ of what the code needs to do.
 
-### Back to source control
+If you're using a version control system, now it's time to amend the previous commit to checking the new version of your code.
 
-Now that we are happy with the code, let's amend the previous commit to check in the new version of our code with its test.
-
-Example:
-
-```bash
-git add greeter.rb greeter_test.rb
-git commit --amend -m 'feat: TDDing hello world'
-```
 
 ### Discipline
 
@@ -453,7 +448,7 @@ Here we're defining an **instance variable** named `@language`. Any variable pre
 
 Our constructor method is assigning the value passed as argument to the `@language` instance variable.
 
-Now let's run the test and check the output:
+Here's the test run output:
 
 ```
 # Running:
@@ -501,7 +496,7 @@ class Greeter
 end
 ```
 
-Let's run the tests:
+Test results:
 
 ```
 # Running:
@@ -532,7 +527,7 @@ def hello(name = 'world')
 end
 ```
 
-Run the tests and you'll see it pass. Time for refactoring.
+Now the tests should pass. Time for refactoring.
 
 For now, I decided to make no changes, then let's move on.
 
@@ -578,7 +573,7 @@ def hello(name = 'world')
 end
 ```
 
-Run the tests and you'll see it pass.
+The tests should pass now.
 
 Time for _refactoring_. Let's take this opportunity to learn how to use the `case` statement.
 
@@ -631,7 +626,7 @@ class Greeter
 end
 ```
 
-Run the tests and it should pass.
+The tests should pass now.
 
 One question that might arise here is: "shouldn't we create a test for the greeting method?". And my answer for this case is: **no**. We want to validate the desired behavior, which is to greet people in a proper language. Our test suite is validating this behavior through the `#hello` method.
 
@@ -674,16 +669,7 @@ def greeting
 end
 ```
 
-Run the tests again and it should pass.
-
-### Source Control
-
-Let's commit what we've done so far:
-
-```bash
-git add hello.rb greeter.rb greeter_test.rb
-git commit -m 'feat(hello): multilingual hello world'
-```
+The tests should be passing now and then you can commit your code.
 
 ### Olá, Hallo, Ciao, Konnichiwa
 

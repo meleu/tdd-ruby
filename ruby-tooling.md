@@ -15,19 +15,38 @@ $ ruby --version
 ruby 3.2.2
 ```
 
-## Testing Framework
+## Minitest
 
-In this book we're going to use **Minitest**. It already comes with the Ruby Standard Library, so if you installed Ruby, you're ready to use Minitest.
+We're going to use **Minitest**. It already comes with the Ruby Standard Library, so if you installed Ruby, you're ready to use Minitest.
 
-## Ruby documentation
 
-Bookmark this website: <https://ruby-doc.org/>
+## Linter and Formatter
 
-It has the official documentation for the Ruby language and we're going to use it a lot.
+[RuboCop](https://rubocop.org) and [StandardRB](https://github.com/standardrb/standard) are two popular linters and formatters fro Ruby. I recommend StandardRB, as it's simpler and has less things to configure.
 
-A good tip about the official documentation is how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you to where you want. This notation is also frequently used in the Ruby literature.
+If you have one of these linters and formatters configured in your editor, just be mindful that it can sometimes change your code in a way you don't want (e.g.: delete a variable that you don't use *yet*).
 
-Even when not prefixed with the class name, the `#` symbol used as a prefix implies that we're talking about a method. Example: `#puts`.
+If you think the auto formatter is confusing you, try to turn off the "format on save" feature of your editor (at least while working in the first chapters).
+
+## Run tests quickly
+
+During the practices we'll run tests frequently, and we want to easily trigger them. Maybe you'll need to discover the key combination used to trigger the tests from your editor, but I can suggest an agnostic solution: the [rerun gem](https://rubygems.org/gems/rerun).
+
+Install it with `gem install rerun`.
+
+Once it's installed we can easily trigger a test on file update. Example:
+
+```bash
+rerun -x -- ruby my_test.rb
+```
+
+## A note on Coding Assistants
+
+**You should not use AI coding assistants while going through the book,** otherwise it will ruin your learning.
+
+Don't get me wrong! I know that tools like GitHub Copilot or the Cursor editor are useful, and I also use such tools in my daily job. The problem is that using them while doing the practices in this book would cause an [illusion of competence](https://www.memory-improvement-tips.com/illusions-of-competence.html) and that would be a waste of your time.
+
+I want you to leverage these tools **after** learning what you'll learn from this book.
 
 ## Interactive Ruby Shell (`irb`)
 
@@ -74,44 +93,15 @@ Hello, World!
 > exit
 ```
 
+## Ruby documentation
 
-## Basic Ruby coding style
+Bookmark this website: <https://ruby-doc.org/>
 
-Throughout this book you'll see how Rubyists usually write their code. For now the only thing we need to know is that we name our variables and methods using `snake_case` (not `camelCase`).
+It has the official documentation for the Ruby language and we're going to use it a lot.
 
-### Ruby Linter and Formatter
+A good tip about the official documentation is how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you to where you want. This notation is also frequently used in the Ruby literature.
 
-[RuboCop](https://rubocop.org) is the most popular Ruby linter/formatter available.
-
-If you have RuboCop configured in your editor, you'll probably see some lint diagnostics while coding. Although those messages are useful, they can be a distraction when you're trying to learn Ruby for the first time. If you think they're distracting you, just ignore the messages during the first chapters. After you get more familiar with Ruby, you'll start to see the value of those warnings.
-
-If your editor has a "format on save" feature, I suggest to let it disabled (at least while working in the first chapters).
-
-### Coding Assistants
-
-If you have coding assistants, like GitHub Copilot, on your editor, you should turn off it while going through the book. Otherwise it will ruin your learning. Using them while reading the book would produce an [illusion of competence](https://www.memory-improvement-tips.com/illusions-of-competence.html) and would be a waste of your time.
-
-I want you to leverage these kind of tools **after** learning what you're about to learn in this book.
-
-
-## Before we start...
-
-In order to keep our code in a centralized directory, where we can easily go to whenever we want, let's create an environment variable named `TDD_RUBY_PATH`. In this variable we add the full path to the directory we'll use to save our code.
-
-In my case, I use `${HOME}/code/tdd-ruby-code`, then I would declare the variable like this:
-
-```bash
-export TDD_RUBY_PATH="${HOME}/code/tdd-ruby-code"
-```
-
-I recommend you to put this 👆 line of code in your `.bashrc` or `.zshrc` file (or whatever file you use to configure your shell). This is going to be useful for when you want to quickly `cd $TDD_RUBY_PATH`.
-
-We'll also keep track of our changes with git, then let's initialize a repository:
-
-```bash
-cd $TDD_RUBY_PATH
-git init
-```
+Even when not prefixed with the class name, the `#` symbol used as a prefix implies that we're talking about a method. Example: `#puts`.
 
 
 ## Wrapping up
@@ -119,9 +109,7 @@ git init
 At this point you should have:
 
 - Ruby installed
+- installed the `rerun` gem
 - typed at least one command inside `irb`
 - visited **and bookmarked** <https://ruby-doc.org/>
-- understood that we name variables and methods using `snake_case`
 - a text editor available
-- created the `TDD_RUBY_PATH` variable in your shell
-- initialized a local git repository

@@ -4,8 +4,7 @@
 
 This book aims to teach you **Ruby** and **Test-Driven Development** (spoiler: we're going to use **Minitest** as the testing framework).
 
-Since we use Ruby, it's inevitable that we also talk about **Object-Oriented Programming** (OOP). And as we use TDD, it's inevitable that we're going to talk about **Software Design**.
-
+Since we use Ruby, it's inevitable that we also talk about **Object-Oriented Programming** (OOP). Also, as we use TDD, it's inevitable that we're going to talk about **Software Design**.
 
 ## Why?
 
@@ -16,34 +15,27 @@ Ruby has an elegant syntax that is natural to read and easy to write. It offers 
 
 ### Why TDD?
 
-There are many books and articles talking about the benefits of TDD. There are also articles defaming TDD, but if you're reading this book I believe you have hope that it's a useful skill.
+My main reasons to use TDD are:
 
-Of course I'm on the side of those who think that TDD is useful. The strongest argument in favor of TDD is that **it promotes a better software design**. By using TDD you are encouraged to make your code testable, which means less coupled and easier to maintain.
+- Promotes a better software design
+- Facilitates refactoring
+- Decrease bugs (and time spent with debugging)
+- Faster development
 
-Now, instead of repeating all the other good arguments already mentioned in those books and articles, I'm going to mention a new one:
+And currently, there's an even stronger reason to use TDD:
 
 **In the current AI era TDD is more valuable than ever**.
 
-With AIs writing code much faster than humans, such activity becomes cheaper. This leads me to a conclusion that **the real value is less in the code, and more in the tests**. Your ability to convert real world requirements into runnable tests will make you a more productive and valuable professional.
+With AIs writing code much faster than humans, such activity becomes cheaper. This leads me to a conclusion that **the real value is less in the code, and more in the tests**. Your ability to convert real world requirements into executable tests will make you more productive and a valuable professional.
 
 ### Why Minitest?
-
-The most used testing frameworks in the Ruby community are:
-
-- RSpec: a feature-rich testing framework that provides a Domain Specific Language for writing tests.
-- **Minitest**: a lightweight testing framework that provides utilities to write your tests using "pure Ruby"
-
-You will soon realize (or already know), that most of the Ruby jobs out there use RSpec. So why did I decide to use Minitest in this book? Two reasons:
 
 1. you only have to know Ruby to use Minitest
 2. it comes with the Ruby Standard Library
 
 When I first tried to learn about testing in Ruby I was influenced by the information that most job opportunities require RSpec. Then I noticed I spent more energy learning the "RSpec language" than the principles of TDD. I didn't enjoy the experience and I hope you don't feel this pain too.
 
-This book aims to teach you Ruby and the TDD principles at the same time. This is already an ambitious goal. If I were to use RSpec, that would be one more thing to be taught, and it would be overwhelming.
-
-Just keep in mind that with the testing practices and principles you'll learn here, you'll be able to smoothly learn the RSpec DSL later.
-
+Just keep in mind that with the testing principles you'll learn here, you'll be able to easily apply with RSpec, if you need to.
 
 ## What you should expect
 
@@ -58,7 +50,7 @@ Initially the TDD cycle may seem tedious, but as you progress through the book y
 
 You'll notice that the first programs are really simple. That's intentional. The greatest value will be in the way we solve the problems. The thought process, the tools we use, the tests we write, the way we organize our code...
 
-If I used "real world problems", I would need to spend words explaining the problem's domain and then talk about the techniques. That would be lengthy and confusing. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have at hand.
+If I used "real world problems", we would need to spend brain power understanding the problem's domain and then learn the techniques. That would be tiresome and confusing. By keeping the problems simple, I'm sure you'll find a way to adapt the techniques to the "real world problem" you have at hand.
 
 
 ## Who this is for
@@ -70,15 +62,11 @@ I assume you already wrote some code (any language) and understand the basic con
 
 It's also expected that you're comfortable using the terminal (or at least not scared to use it).
 
-Basic knowledge of git is helpful, but not mandatory.
-
 
 ## What you'll need
 
-- A computer
-- A Unix-like operating system (Linux, MacOS or Windows with WSL)
+- A computer with a Unix-like operating system (Linux, MacOS or Windows with WSL)
 - Installed Ruby (3.1+)
-- Installed git
 - A text editor
 - A terminal
 
