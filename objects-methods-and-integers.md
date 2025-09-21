@@ -544,7 +544,7 @@ binary = NumberConverter.new.dec2bin(my_number)
 puts "binary: #{binary}"
 ```
 
-We're assigning a value to `my_number` with `gets`, which returns the user's input _as a String_. When we pass this string to `#dec2bin` it calls `String#to_s` instead of `Integer#to_s`. And [String#to_s documentation](https://ruby-doc.org/current/Integer.html#method-i-to_s) doesn't accept an argument. That's why our program is crashing!
+We're assigning a value to `my_number` with `gets`, which returns the user's input _as a String_. When we pass this string to `#dec2bin` it calls `String#to_s` instead of `Integer#to_s`. And in [String#to_s documentation](https://ruby-doc.org/current/Integer.html#method-i-to_s) we can see that it doesn't accept an argument. That's why our program is crashing!
 
 This is an example of how Ruby's dynamism is a double-edged sword. It can be powerful and allow rapid development, but also requires extra attention. In this case the lack of type checking allowed us to pass an unexpected data type that crashed our application.
 

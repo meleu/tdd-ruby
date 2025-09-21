@@ -160,7 +160,7 @@ Run the test and it should pass, which again triggers the decision: should we re
 
 How could we refactor an oneliner like this?
 
-In this case my refactoring is: delete the function and the test!
+In this case my refactoring is: **delete the function and the test!**
 
 We must keep in mind that "**code is liability**". Each line of code in the repository has a cost and needs a reason to be kept there.
 

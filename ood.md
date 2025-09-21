@@ -5,7 +5,7 @@ dg-publish: false
 
 > **NOTE**:
 >
-> If you're here just for the TDD parts, and are already familiar with OOP in Ruby, and concepts like constructor method, instance variables, and sending messages, then you can safely skip this chapter.
+> If you are already familiar with OOP in Ruby, and concepts like constructor method, instance variables, and sending messages, then you can safely skip this chapter.
 
 In the introduction of this book I told that we'll inevitably talk about **Object-Oriented Programming** (OOP) and **Software Design**. The combination of these concepts can be called **Object-Oriented Design**. In this chapter we'll see a short description of these concepts. And apply them in the context of the Ruby language.
 

@@ -29,7 +29,7 @@ With AIs writing code much faster than humans, such activity becomes cheaper. Th
 
 ## What you should expect
 
-- Explore the Ruby language by writing tests.
+- Explore the Ruby language and tools by writing tests.
 - **Get a solid grounding with TDD**.
 - Strengthen your knowledge of OOP
 - Be confident that you'll be able to start writing robust, well-tested software in Ruby.

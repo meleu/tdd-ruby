@@ -32,7 +32,7 @@ How do you test this program?
 
 The answer for this question is our first example of how TDD promotes software design.
 
-To make our program testable it is good to separate our "domain[^1]" code from the outside world (side-effects[^2]). In our program the greeting string is our domain, and the `puts` is a side effect (printing the string on the screen).
+To make our program testable it is good to separate our "domain[^1]" code from the outside world (side-effects[^2]). In our program the greeting string is our domain, and the `puts` is a function that causes a side effect (printing the string on the screen).
 
 Imagine that instead of printing the greeting on the screen we wanted to send the string over the network as a response to a HTTP request. If our domain (the construction of the greeting string) is properly separated, we can easily reuse it in different scenarios. That's the main benefit of separating these concerns. So, let's do it.
 
@@ -72,7 +72,7 @@ greeter = Greeter.new
 puts greeter.hello
 ```
 
-Another Ruby syntactic sugar[^3] is that the last evaluated expression of a method is always returned. Therefore the use of the `return` in the last line of that method is unnecessary.
+Another Ruby syntactic-sugar[^3] is that the last evaluated expression of a method is always returned. Therefore the use of the `return` in the last line of that method is unnecessary.
 
 So, let's clear our code a little more:
 
@@ -190,7 +190,7 @@ The concept of subclass will be explained in another moment. For now just keep i
 
 #### The actual test method
 
-This is the method where we are actually testing our hello method:
+This is the method where we actually test our hello method:
 
 ```ruby
 def test_say_hello_world
@@ -201,11 +201,18 @@ def test_say_hello_world
 end
 ```
 
-We create a greeter object, then call the `hello` method, then define the expected result, and finally assert if the expected result is equal to the actual one.
+Simply put:
 
-When we ran this test it passed, which is nice. But we didn't do Test-Driven Development.
+- We create a greeter object,
+- then call the `hello` method,
+- then define the expected result,
+- and finally assert if the expected result is equal to the actual one.
 
-We wrote the test _after_ the code had been written, so that you could get an example of how to write a class, a method and create a test for it. Now we're going to **delete the test we just wrote** a start a fresh one.
+#### That is not TDD
+
+We ran this test and it passed, which is nice. But we didn't do Test-Driven Development.
+
+We wrote the test _after_ the code had been written, so that we could get an example of how to write a method, and a test for it. Now we're going to **delete the test we just wrote** and start a fresh one.
 
 From this point on, we will be _writing tests first_, and then the implementation (usually called _production code_). This is the base of Test-Driven Development and allows us to make sure our test is truly testing what we want. When you retrospectively write tests, there is the risk that your test may continue to pass even if the code doesn't work as intended.
 
@@ -230,9 +237,9 @@ end
 ```
 
 > #### Quickly run tests
-> 
-> At this point you should be familiar with a way to quickly trigger the test. If you know how to do it in your code editor, that's perfect! Otherwise, I recommend using the `rerun`, as I recommended in the [Ruby Tooling](ruby-tooling.md#run-tests-quickly) chapter. If that's your case, you should dedicate a terminal for running tests and execute :
-> 
+>
+> At this point you should be familiar with a way to quickly trigger the test. If you know how to do it in your code editor, that's perfect! Otherwise, I recommend using the `rerun`, as I mentioned in the [Ruby Tooling](ruby-tooling.md#run-tests-quickly) chapter. With `rerun` you should dedicate a terminal for running tests and execute :
+>
 > ```bash
 > rerun -x -- ruby hello_test.rb
 > ```
@@ -300,11 +307,11 @@ def hello(name)
 end
 ```
 
-Now the test should pass.
+After this refactoring the test should still pass.
 
 ## Hello, world... again
 
-The next requirement is when our method is called with no arguments, it defaults to printing `Hello, World`, rather than `Hello, `.
+The next requirement is when our method is called with no arguments, it defaults to printing `Hello, World`, rather than `Hello,`.
 
 As TDD practitioners, we write the _tests first_, so let's write a new failing test.
 
@@ -359,14 +366,13 @@ def hello(name = 'World')
 end
 ```
 
-As we're defining a default value for the `name` variable, calling `#hello` with an argument is optional. Because if none is passed, it uses the default value.
+As we're defining a default value for the `name` variable, calling `#hello` with an argument becomes optional. If none is passed, it uses the default value.
 
 Run the tests and you should see a successful run. It satisfies the new requirement and we haven't accidentally broken the other functionality.
 
 It is important that your tests are _clear specifications_ of what the code needs to do.
 
-If you're using a version control system, now it's time to amend the previous commit to checking the new version of your code.
-
+If you're using a version control system, now it's time to amend the previous commit to check in the new version of your code.
 
 ### Discipline
 

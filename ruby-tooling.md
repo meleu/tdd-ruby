@@ -52,7 +52,7 @@ rerun -x -- ruby my_test.rb
 
 **You should not use AI coding assistants while going through the book,** otherwise it will ruin your learning.
 
-Don't get me wrong! I know that tools like GitHub Copilot or the Cursor editor are useful, and I also use such tools in my daily job. The problem is that using them while doing the practices in this book would cause an [illusion of competence](https://www.memory-improvement-tips.com/illusions-of-competence.html) and that would be a waste of your time.
+Don't get me wrong! I know that tools like GitHub Copilot or the Cursor editor are useful, and I also use them in my daily job. The problem is that using them while doing the exercises in this book would cause an [illusion of competence](https://www.memory-improvement-tips.com/illusions-of-competence.html) and that would be a waste of your time.
 
 I want you to leverage these tools **after** learning what you'll learn from this book.
 
