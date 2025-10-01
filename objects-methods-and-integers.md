@@ -339,7 +339,7 @@ Currently our test class looks like this:
 # ...
 
 class TestNumberConverter < Minitest::Test
-  def test_convert_eight
+  def test_convert_eight_to_binary
     converter = NumberConverter.new
     actual = converter.dec2bin(8)
     expected = "1000"
@@ -355,26 +355,20 @@ class TestNumberConverter < Minitest::Test
 end
 ```
 
-So far I've been writing tests assigning values to `expected` and `actual` variables and then passing them to `assert_equal`. I did this for a didactic reason, just to make it explicit that an assertion involves a comparison between an expected value and the actual value. Now that you (hopefully) already got the idea, we can make the testing code more concise.
-
-First, as we instantiate an object for just one method call, we can do it with a single expression, like this:
-
-```ruby
-actual = NumberConverter.new.dec2bin(8)
-```
-
-The second change towards conciseness is that we can inline the expected value and the method call in the assertion line. Now our test file can look like this:
+So far I've been writing tests assigning values to `expected` and `actual` variables and then passing them to `assert_equal`. I did this just to make it explicit that an assertion involves a comparison between an expected value and the actual one. Now that you already got the idea, we can make the testing code more concise. Like this:
 
 ```ruby
 # ...
 
 class TestNumberConverter < Minitest::Test
-  def test_convert_eight
-    assert_equal "1000", NumberConverter.new.dec2bin(8)
+  def test_convert_eight_to_binary
+    converter = NumberConverter.new
+    assert_equal "1000", converter.dec2bin(8)
   end
 
   def test_convert_two_to_binary
-    assert_equal "10", NumberConverter.new.dec2bin(2)
+    converter = NumberConverter.new
+    assert_equal "10", converter.dec2bin(2)
   end
 end
 ```
@@ -385,14 +379,15 @@ One important aspect of tests to keep in mind is: we should have one test per be
 
 ```ruby
 class TestNumberConverter < Minitest::Test
-  def test_dec2bin
-    assert_equal "1000", NumberConverter.new.dec2bin(8)
-    assert_equal "10", NumberConverter.new.dec2bin(2)
+  def test_dec2bin_convert_decimal_to_binary
+    converter = NumberConverter.new
+    assert_equal "1000", converter.dec2bin(8)
+    assert_equal "10", converter.dec2bin(2)
   end
 end
 ```
  
-The tests should be passing now, and I think for now we're done with this refactoring session.
+The tests should be passing now, and I think for we can finish this refactoring session.
 
 Commit your changes and let's move on.
 
@@ -636,4 +631,4 @@ Let's recap what we learned in this chapter.
 - Minimal implementation: write just enough code to make the tests pass (without being pedantic, please).
 - Test code also needs refactoring to stay tidy.
 - TDD guides the development, but does not assure our software is free of bugs.
-- Replicating bugs in tests: add test cases for discovered issues before fixing them.
+- Replicating bugs in tests: add test cases for discovered bugs before fixing them.
