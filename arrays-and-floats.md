@@ -101,7 +101,9 @@ Run the test and check the error.
 Solve the error messages until the test **fails** without **errors**. By doing this you should now have a file named `statistics_calculator.rb` with contents like this:
 
 ```ruby
-def sum(numbers)
+class StatisticsCalculator
+  def sum(numbers)
+  end
 end
 ```
 

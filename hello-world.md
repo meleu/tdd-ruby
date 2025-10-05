@@ -190,7 +190,7 @@ The concept of subclass will be explained in another moment. For now just keep i
 
 #### The actual test method
 
-This is the method where we actually test our hello method:
+This is the method where we actually test the `#hello` method:
 
 ```ruby
 def test_say_hello_world
@@ -212,7 +212,7 @@ Simply put:
 
 We ran this test and it passed, which is nice. But we didn't do Test-Driven Development.
 
-We wrote the test _after_ the code had been written, so that we could get an example of how to write a method, and a test for it. Now we're going to **delete the test we just wrote** and start a fresh one.
+We wrote the test _after_ the code had been written, so that you could get an example of how to write a class, a method and create a test for it. Now we're going to **delete the test we just wrote** and start a fresh one.
 
 From this point on, we will be _writing tests first_, and then the implementation (usually called _production code_). This is the base of Test-Driven Development and allows us to make sure our test is truly testing what we want. When you retrospectively write tests, there is the risk that your test may continue to pass even if the code doesn't work as intended.
 
