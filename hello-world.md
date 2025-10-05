@@ -126,7 +126,7 @@ Don't worry if you don't understand everything. After writing and running this t
 require 'minitest/autorun'
 require_relative 'greeter'
 
-class TestGreeter < Minitest::Test
+class GreeterTest < Minitest::Test
   def test_say_hello_world
     greeter = Greeter.new
     actual = greeter.hello
@@ -178,15 +178,15 @@ When we use `require_relative`, we're getting the code from a file stored in a p
 
 #### creating a subclass
 
-In the code below we're creating a new class named `TestGreeter` as a subclass of `Minitest::Test`:
+In the code below we're creating a new class named `GreeterTest` as a subclass of `Minitest::Test`:
 
 ```ruby
-class TestGreeter < Minitest::Test
+class GreeterTest < Minitest::Test
   # ...
 end
 ```
 
-The concept of subclass will be explained in another moment. For now just keep in mind that when we create the `TestGreeter` as a subclass of `Minitest::Test`, this means that `TestGreeter` inherits the behavior defined in `Minitest::Test`.
+The concept of subclass will be explained in another moment. For now just keep in mind that when we create the `GreeterTest` as a subclass of `Minitest::Test`, this means that `GreeterTest` inherits the behavior defined in `Minitest::Test`.
 
 #### The actual test method
 
@@ -226,7 +226,7 @@ Let's create a Greeter where we must specify the recipient of the greeting. We s
 require "minitest/autorun"
 require_relative "greeter"
 
-class TestGreeter < Minitest::Test
+class GreeterTest < Minitest::Test
   def test_hello_to_people
     greeter = Greeter.new
     actual = greeter.hello("John")
@@ -241,14 +241,14 @@ end
 > At this point you should be familiar with a way to quickly trigger the test. If you know how to do it in your code editor, that's perfect! Otherwise, I recommend using the `rerun`, as I mentioned in the [Ruby Tooling](ruby-tooling.md#run-tests-quickly) chapter. With `rerun` you should dedicate a terminal for running tests and execute :
 >
 > ```bash
-> rerun -x -- ruby hello_test.rb
+> rerun -x -- ruby greeter_test.rb
 > ```
 
 After running the test you should see an error like this:
 
 ```
   1) Error:
-TestGreeter#test_hello_to_people:
+GreeterTest#test_hello_to_people:
 ArgumentError: wrong number of arguments (given 1, expected 0)
     greeter.rb:2:in `hello'
     greeter_test.rb:7:in `test_hello_to_people'
@@ -272,7 +272,7 @@ Now you should see a failure with this message:
 
 ```
   1) Failure:
-TestGreeter#test_hello_to_people [greeter_test.rb:9]:
+GreeterTest#test_hello_to_people [greeter_test.rb:9]:
 Expected: "Hello, John"
   Actual: "Hello, World"
 ```
@@ -316,7 +316,7 @@ The next requirement is when our method is called with no arguments, it defaults
 As TDD practitioners, we write the _tests first_, so let's write a new failing test.
 
 ```ruby
-class TestGreeter < Minitest::Test
+class GreeterTest < Minitest::Test
   # ...
 
   def test_say_hello_world_when_called_with_no_args
@@ -334,7 +334,7 @@ With that test we'll see an error message like this:
 
 ```
   1) Error:
-TestGreeter#test_say_hello_world_when_called_with_no_args:
+GreeterTest#test_say_hello_world_when_called_with_no_args:
 ArgumentError: wrong number of arguments (given 0, expected 1)
     greeter.rb:2:in `hello'
     greeter_test.rb:14:in `test_say_hello_world_when_called_with_no_args'
@@ -342,7 +342,7 @@ ArgumentError: wrong number of arguments (given 0, expected 1)
 
 That error message is telling us that:
 
-- the `TestGreeter#test_say_hello_world_when_called_with_no_args` failed
+- the `GreeterTest#test_say_hello_world_when_called_with_no_args` failed
 - it failed due to the `ArgumentError`, because the `#hello` expected 1 argument and we didn't give any.
 
 Let's check our `#hello` again:
@@ -426,7 +426,7 @@ E..
 Finished in 0.001163s, 2579.5512 runs/s, 1719.7008 assertions/s.
 
   1) Error:
-TestGreeter#test_spanish_greeter:
+GreeterTest#test_spanish_greeter:
 ArgumentError: wrong number of arguments (given 1, expected 0)
     greeter_test.rb:20:in `initialize'
     greeter_test.rb:20:in `new'
@@ -464,19 +464,19 @@ EFE
 Finished in 0.002096s, 1431.0492 runs/s, 477.0164 assertions/s.
 
   1) Error:
-TestGreeter#test_say_hello_world_when_called_with_no_args:
+GreeterTest#test_say_hello_world_when_called_with_no_args:
 ArgumentError: wrong number of arguments (given 0, expected 1)
     greeter.rb:2:in `initialize'
     greeter_test.rb:13:in `new'
     greeter_test.rb:13:in `test_say_hello_world_when_called_with_no_args'
 
   2) Failure:
-TestGreeter#test_spanish_greeter [greeter_test.rb:23]:
+GreeterTest#test_spanish_greeter [greeter_test.rb:23]:
 Expected: "Hola, Juan"
   Actual: "Hello, Juan"
 
   3) Error:
-TestGreeter#test_hello_to_people:
+GreeterTest#test_hello_to_people:
 ArgumentError: wrong number of arguments (given 0, expected 1)
     greeter.rb:2:in `initialize'
     greeter_test.rb:6:in `new'
@@ -496,7 +496,7 @@ In our case here we're breaking the previous tests because we added a new _manda
 ```ruby
 class Greeter
   def initialize(language = 'english')
-    @languague = language
+    @language = language
   end
   # ... rest of the code...
 end
@@ -512,7 +512,7 @@ Test results:
 Finished in 0.001142s, 2627.1267 runs/s, 2627.1267 assertions/s.
 
   1) Failure:
-TestGreeter#test_spanish_greeter [greeter_test.rb:23]:
+GreeterTest#test_spanish_greeter [greeter_test.rb:23]:
 Expected: "Hola, Juan"
   Actual: "Hello, Juan"
 
@@ -558,7 +558,7 @@ The test will fail with:
 
 ```
   1) Failure:
-TestGreeter#test_french_greeter [greeter_test.rb:30]:
+GreeterTest#test_french_greeter [greeter_test.rb:30]:
 Expected: "Bonjour, Jean"
   Actual: "Hello, Jean"
 ```
