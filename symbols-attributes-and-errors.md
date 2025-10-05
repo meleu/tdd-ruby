@@ -1,8 +1,8 @@
-# Symbols, Attributes and Errors 
+# Symbols, Attributes and Errors
 
 I mentioned that OOP is a way of grouping data and behavior under the same concept, but most of the projects we worked until now were mostly about behavior.
 
-With the exception of our `Greeter`, that has a `@language` attribute, the other classes we created (NumberConverter, StringDecorator and StatiscsCalculator) were all about behavior, with no "internal state" data to be managed.
+With the exception of our `Greeter`, that has a `@language` attribute, the other classes we created (NumberConverter, StringDecorator and StatisticsCalculator) were all about behavior, with no "internal state" data to be managed.
 
 In this chapter we're going to use an attribute to manage the object's state and expose some methods to let users change the state in a way we can control.
 
@@ -28,7 +28,7 @@ Here's what I have in mind right now
 > - [ ] a withdraw from a wallet immediately reflects in its balance
 > - [ ] a withdraw with an amount greater than the current balance must result in an error
 
-Maybe we can think in more requirements later, but with this short list of requirements we can start something. I feel much better having this list written down and not occupying my brain. Now I can focus on writing tests and implementing code to pass the tests 
+Maybe we can think in more requirements later, but with this short list of requirements we can start something. I feel much better having this list written down and not occupying my brain. Now I can focus on writing tests and implementing code to pass the tests
 
 ## A Wallet Starts With a Zero Balance
 
@@ -81,6 +81,7 @@ class Wallet
   end
 end
 ```
+
 ### Refactor
 
 We know that a balance is an attribute of a wallet, then I think we need an instance variable to store the current amount of money in the wallet.
@@ -156,6 +157,7 @@ And our test is still passing!
 > NOTE:
 >
 > The usual attribute accessors are:
+>
 > - `attr_reader`: the one we saw above
 > - `attr_writter`: creates an instance variable with the given identifier and allows you to assign values to it
 > - `attr_accessor`: equivalent to using both reader and writter.
@@ -163,7 +165,7 @@ And our test is still passing!
 That's it! Let's move to the next item in our list...
 
 ## Deposit Method
- 
+
 > - [x] a wallet starts with zero balance
 > - [ ] **a deposit in a wallet immediately reflects in its balance**
 > - [ ] a withdraw from a wallet immediately reflects in its balance
@@ -324,6 +326,7 @@ end
 ```
 
 The test should pass.
+
 ### Refactor
 
 The code is pretty neat:
@@ -579,7 +582,7 @@ NameError: uninitialized constant WalletTest::NotEnoughFundsError
 The simplest way to create a custom error is by simply creating an empty class inheriting from `StandardError`, like this:
 
 ```ruby
-class NotEnougFundsError < StandardError; end
+class NotEnoughFundsError < StandardError; end
 ```
 
 And that's enough!
@@ -671,7 +674,6 @@ Let's mark the last item from todo list as done and wrap up this chapter.
 > - [x] a withdraw from a wallet immediately reflects in its balance
 > - [x] a withdraw with an amount greater than the current balance must result in an error
 > - [x] withdraw when there's no funds must raise `NotEnoughFundsError`
-
 
 ## Key Concepts
 
