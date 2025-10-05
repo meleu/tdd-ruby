@@ -2,7 +2,7 @@
 
 In Ruby everything we interact with is an object. That includes basic data types like numbers, strings and even `nil`. Every value in Ruby has an underlying object representation and can be manipulated with methods.
 
-Ruby is also known to be "weakly typed", which means that type checking is not strictly enforced. This feature allows variables to change types dynamically at runtime. Example:
+Ruby is also known to be "weakly typed" (or more accurately: "dynamically typed"), which means that type checking is not strictly enforced. This feature allows variables to change types dynamically at runtime. Example:
 
 ```ruby
 x = 10      # x is an Integer
@@ -15,7 +15,7 @@ The object-oriented approach combined with the dynamic type system make Ruby a p
 
 The numeral system humans are used to use is the decimal system. It has this name because it uses ten different digits to represent the values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`.
 
-The [binary numeral system](https://simple.wikipedia.org/wiki/Binary_number) is a way to represent vaues using only two digits: `0` and `1`. As it only needs two digits, we can say it's a _base two_ number system.
+The [binary numeral system](https://simple.wikipedia.org/wiki/Binary_number) is a way to represent values using only two digits: `0` and `1`. As it only needs two digits, we can say it's a _base two_ number system.
 
 For computers the binary system is extremely efficient because they need to store information in only two simple different states: "on" or "off" (`1` or `0`). Sets of binary numbers can be used to represent any information, such as text, audio, or video.
 
@@ -41,7 +41,7 @@ Now let's start our _Decimal to Binary Converter™_ project following the TDD c
 
 ### Write the test first
 
-We still have no idea about how to implement this converter, then *how can we write a test for a code that doesn't even exist?!* That's a strong and valid question. The answer is: **write the test using the best interface you can think of to perform the operation**.
+We still have no idea about how to implement this converter, then _how can we write a test for a code that doesn't even exist?!_ That's a strong and valid question. The answer is: **write the test using the best interface you can think of to perform the operation**.
 
 Keeping this in mind, I list here my ideas for a great interface to a class able to convert a decimal number to its binary representation:
 
@@ -81,7 +81,7 @@ Create a file named `number_converter_test.rb`:
 require "minitest/autorun"
 require_relative "number_converter"
 
-class TestNumberConverter < Minitest::Test
+class NumberConverterTest < Minitest::Test
   def test_convert_eight_to_binary
     converter = NumberConverter.new
     actual = converter.dec2bin(8)
@@ -124,14 +124,14 @@ E
 Finished in 0.001917s, 521.5445 runs/s, 0.0000 assertions/s.
 
   1) Error:
-TestNumberConverter#test_convert_eight_to_binary:
-NameError: uninitialized constant TestNumberConverter::NumberConverter
+NumberConverterTest#test_convert_eight_to_binary:
+NameError: uninitialized constant NumberConverterTest::NumberConverter
     number_converter_test.rb:6:in `test_convert_eight_to_binary'
 
 1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
 ```
 
-Now the error message says `NameError: uninitialized constant TestNumberConverter::NumberConverter`.
+Now the error message says `NameError: uninitialized constant NumberConverterTest::NumberConverter`.
 
 When we create a class, the class's name is a constant. That's why the error message says `uninitialized constant`.  To solve this we must create the class in the `number_converter.rb`:
 
@@ -144,7 +144,7 @@ New error message:
 
 ```
   1) Error:
-TestNumberConverter#test_convert_eight_to_binary:
+NumberConverterTest#test_convert_eight_to_binary:
 NoMethodError: undefined method `dec2bin' for an instance of NumberConverter
     number_converter_test.rb:7:in `test_convert_eight_to_binary'
 ```
@@ -162,13 +162,13 @@ New error message:
 
 ```
   1) Error:
-TestNumberConverter#test_convert_eight_to_binary:
+NumberConverterTest#test_convert_eight_to_binary:
 ArgumentError: wrong number of arguments (given 1, expected 0)
     number_converter.rb:2:in `dec2bin'
     number_converter_test.rb:7:in `test_convert_eight_to_binary'
 ```
 
-Let's fix the `wrong number of arguments` in our `dec2bin.rb`:
+Let's fix the `wrong number of arguments` in our `number_converter.rb`:
 
 ```ruby
 class NumberConverter
@@ -181,7 +181,7 @@ Now we have a **failure** message:
 
 ```
   1) Failure:
-TestNumberConverter#test_convert_eight_to_binary [number_converter_test.rb:9]:
+NumberConverterTest#test_convert_eight_to_binary [number_converter_test.rb:9]:
 Expected: "1000"
   Actual: nil
 ```
@@ -209,7 +209,7 @@ Maybe we should add another assertion to our test in `number_converter_test.rb`:
 ```ruby
 # ...
 
-class TestNumberConverter < Minitest::Test
+class NumberConverterTest < Minitest::Test
   # ...
   
   def test_convert_two_to_binary
@@ -231,7 +231,7 @@ F.
 Finished in 0.001159s, 1726.0619 runs/s, 1726.0619 assertions/s.
 
   1) Failure:
-TestNumberConverter#test_convert_two_to_binary [number_converter_test.rb:16]:
+NumberConverterTest#test_convert_two_to_binary [number_converter_test.rb:16]:
 Expected: "10"
   Actual: "1000"
 
@@ -338,7 +338,7 @@ Currently our test class looks like this:
 ```ruby
 # ...
 
-class TestNumberConverter < Minitest::Test
+class NumberConverterTest < Minitest::Test
   def test_convert_eight_to_binary
     converter = NumberConverter.new
     actual = converter.dec2bin(8)
@@ -360,7 +360,7 @@ So far I've been writing tests assigning values to `expected` and `actual` varia
 ```ruby
 # ...
 
-class TestNumberConverter < Minitest::Test
+class NumberConverterTest < Minitest::Test
   def test_convert_eight_to_binary
     converter = NumberConverter.new
     assert_equal "1000", converter.dec2bin(8)
@@ -378,7 +378,7 @@ Run the tests and they should still pass. Therefore, it's time for another round
 One important aspect of tests to keep in mind is: we should have one test per behavior. If we look carefully, both tests we currently have are testing the same behavior, a simple case of converting an integer to its binary notation. So, I think both tests should be merged into one (and the test should be renamed accordingly):
 
 ```ruby
-class TestNumberConverter < Minitest::Test
+class NumberConverterTest < Minitest::Test
   def test_dec2bin_convert_decimal_to_binary
     converter = NumberConverter.new
     assert_equal "1000", converter.dec2bin(8)
@@ -386,7 +386,7 @@ class TestNumberConverter < Minitest::Test
   end
 end
 ```
- 
+
 The tests should be passing now, and I think for we can finish this refactoring session.
 
 Commit your changes and let's move on.
@@ -539,13 +539,13 @@ binary = NumberConverter.new.dec2bin(my_number)
 puts "binary: #{binary}"
 ```
 
-We're assigning a value to `my_number` with `gets`, which returns the user's input _as a String_. When we pass this string to `#dec2bin` it calls `String#to_s` instead of `Integer#to_s`. And in [String#to_s documentation](https://ruby-doc.org/current/Integer.html#method-i-to_s) we can see that it doesn't accept an argument. That's why our program is crashing!
+We're assigning a value to `my_number` with `gets`, which returns the user's input _as a String_. When we pass this string to `#dec2bin` it calls `String#to_s` instead of `Integer#to_s`. And in [String#to_s documentation](https://ruby-doc.org/current/String.html#method-i-to_s) we can see that it doesn't accept an argument. That's why our program is crashing!
 
 This is an example of how Ruby's dynamism is a double-edged sword. It can be powerful and allow rapid development, but also requires extra attention. In this case the lack of type checking allowed us to pass an unexpected data type that crashed our application.
 
 Now, before working in a solution for this bug, we'll apply another valuable testing practice: **when you find a bug, replicate it in a test case _before fixing it_.**
 
-**NOTE**: once we found the bug, we can now remove the `binding.irb` line from our `dec2bin.rb` code.
+**NOTE**: once we found the bug, we can now remove the `binding.irb` line from our `number_converter.rb` code.
 
 ### Replicate bugs in tests
 
@@ -553,20 +553,22 @@ Let's write a test giving the problematic String to the `dec2bin` function:
 
 ```ruby
 def test_convert_number_in_string
+  converter = NumberConverter.new
   input = "7\n"
-  assert_equal "111", dec2bin(input)
+  assert_equal "111", converter.dec2bin(input)
 end
+
 ```
 
 Run the test and see if the crash was really replicated:
 
 ```
   1) Error:
-TestNumberConverter#test_call_dec2bin_with_a_string:
+NumberConverterTest#test_convert_number_in_string:
 ArgumentError: wrong number of arguments (given 1, expected 0)
     number_converter.rb:3:in `to_s'
     number_converter.rb:3:in `dec2bin'
-    number_converter_test.rb:12:in `test_call_dec2bin_with_a_string'
+    number_converter_test.rb:12:in `test_convert_number_in_string'
 ```
 
 Nice! Now we can start working on a solution and quickly check if we're on the right path.
@@ -593,7 +595,7 @@ Run the CLI again and it should work without crashing.
 
 This is a good time to commit your changes.
 
-## Octal, Hexadecimal, etc.
+## Octal, Hexadecimal, etc
 
 As an exercise, I suggest you to implement other converters for the `NumberConverter` class. For example:
 
@@ -606,7 +608,6 @@ Always keep in mind the TDD cycle:
 - Run the test, see it fails and check the error message
 - Write enough code to make the test pass
 - Refactor
-
 
 ## Key Concepts
 
