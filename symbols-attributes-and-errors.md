@@ -159,8 +159,8 @@ And our test is still passing!
 > The usual attribute accessors are:
 >
 > - `attr_reader`: the one we saw above
-> - `attr_writter`: creates an instance variable with the given identifier and allows you to assign values to it
-> - `attr_accessor`: equivalent to using both reader and writter.
+> - `attr_writer`: creates an instance variable with the given identifier and allows you to assign values to it
+> - `attr_accessor`: equivalent to using both reader and writer.
 
 That's it! Let's move to the next item in our list...
 
@@ -359,7 +359,7 @@ The way to handle errors in Ruby is by raising an exception. An Exception is a s
 
 > Class `Exception` and its subclasses are used to indicate that an error or other problem has occurred, and may need to be handled.
 
-The programmer using code that can raise an exception should either deal with the problem that raised it or let Ruby exit the program completely.
+The programmer using a code that can raise an exception should either deal with the problem that raised it or let Ruby exit the program completely.
 
 In the documentation we also have the [built-in exception class hierarchy](https://ruby-doc.org/3.4.1/Exception.html#class-Exception-label-Built-In+Exception+Class+Hierarchy), where we can see many errors that we're already dealing with since the "Hello, World" chapter. Namely:
 
@@ -432,9 +432,9 @@ In our case, we want to raise an error when the *argument* given to `#withdraw` 
 #         from ...
 ```
 
-Although `ArgumentError` is more specific than `RuntimeError`, it's still generic. It's the same error raised if we call `#witdraw` with 3 arguments, for example. We can (and should) be even more specific here. Let's write this as a requirement in our list and deal with it later.
+Although `ArgumentError` is more specific than `RuntimeError`, it's still generic. It's the same error raised if we call `#withdraw` with 3 arguments, for example. We can (and should) be even more specific here. Let's write this as a requirement in our list and deal with it later.
 
-> - [ ] withdraw when there's no funds must raise an specific error
+> - [ ] withdraw when there's no funds must raise a specific error
 
 For now I want to just make sure an error is raised when there's no funds.
 
@@ -446,7 +446,7 @@ Our requirements list now looks like this:
 > - [x] a deposit in a wallet immediately reflects in its balance
 > - [x] a withdraw from a wallet immediately reflects in its balance
 > - [ ] **a withdraw with an amount greater than the current balance must result in an error**
-> - [ ] withdraw when there's no funds must raise an specific error
+> - [ ] withdraw when there's no funds must raise a specific error
 
 ### Write the test first
 
@@ -549,7 +549,7 @@ Let's solve this by creating a custom error class with a self-documenting name, 
 > - [x] a deposit in a wallet immediately reflects in its balance
 > - [x] a withdraw from a wallet immediately reflects in its balance
 > - [x] a withdraw with an amount greater than the current balance must result in an error
-> - [ ] **withdraw when there's no funds must raise an specific error**
+> - [ ] **withdraw when there's no funds must raise a specific error**
 
 ### Write the test first
 
@@ -667,13 +667,21 @@ end
 
 Run the tests and they should pass.
 
-Let's mark the last item from todo list as done and wrap up this chapter.
+Let's mark the last item from our todo list as done and wrap up this chapter.
 
 > - [x] a wallet starts with zero balance
 > - [x] a deposit in a wallet immediately reflects in its balance
 > - [x] a withdraw from a wallet immediately reflects in its balance
 > - [x] a withdraw with an amount greater than the current balance must result in an error
-> - [x] withdraw when there's no funds must raise `NotEnoughFundsError`
+> - [x] withdraw when there's no funds must raise a specific error
+
+## Exercises
+
+Here are some ideas of scenarios for you to write tests and implement:
+
+> - [ ] a deposit with a non-positive value must raise an error
+> - [ ] a withdraw with a non-positive value must raise an error
+> - [ ] the use of non-positive values must raise a specific error (e.g.: `InvalidAmountError`)
 
 ## Key Concepts
 
