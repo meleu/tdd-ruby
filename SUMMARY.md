@@ -10,6 +10,7 @@
 - [Objects, Methods & Integers](objects-methods-and-integers.md)
 - [Loops, Blocks & Strings](loops-blocks-and-strings.md)
 - [Arrays & Floats](arrays-and-floats.md)
+- [Symbols, Attributes & Errors](symbols-attributes-and-errors.md)
 
 ## Meta
 
