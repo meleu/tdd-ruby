@@ -4,7 +4,7 @@ When we want to do something repeatedly, we use loops. There are many ways to cr
 
 ## Text Banner
 
-We're going to write a method that adds a decoration to a string to make it look like it's in a banner, like this:
+We're going to write a String decorator class that has a method that adds a decoration to a string to make it look like it's in a banner, like this:
 
 ```
 ================
@@ -12,7 +12,7 @@ this is a banner
 ================
 ```
 
-Starting the `banner` project:
+Starting the `string-decorator` project:
 
 ```bash
 mkdir string-decorator
@@ -29,7 +29,7 @@ Here's our first test in a file called `string_decorator_test.rb`:
 require "minitest/autorun"
 require_relative "string_decorator"
 
-class TestStringDecorator < Minitest::Test
+class StringDecoratorTest < Minitest::Test
   def test_banner
     expected = "====\ntext\n====\n"
     assert_equal expected, StringDecorator.new.banner("text")
@@ -46,7 +46,7 @@ I think that mentally counting the amount of `=` symbols to put above and below 
 A [here document](https://ruby-doc.org/current/syntax/literals_rdoc.html#label-Here+Document+Literals) (aka heredoc) is a more comfortable way to read a multilinear block of text. In our case, as we want to check if the borders of the banner have the proper length in a quick glance, we would use a heredoc like this:
 
 ```ruby
-class TestStringDecorator < Minitest::Test
+class StringDecoratorTest < Minitest::Test
   def test_banner
     expected = <<~BANNER
       ====
@@ -75,7 +75,7 @@ As expected, we got an **error** (not a **failure**).
 
 *Keep the discipline!* You don't need to know anything new to make the test fail properly.
 
-All you need to do right now is write enough code to make the test _**fail** with no **errors**_.
+All you need to do right now is write enough code to make the test ***fail** with no **errors***.
 
 If you let the error messages drive the development you'll end up with a file named `string_decorator.rb` with this content:
 
@@ -190,7 +190,6 @@ The final result can look like the same, but there are subtle differences betwee
 
 > [This StackOverflow Q&A](https://stackoverflow.com/q/4684446) has some good answers about the differences between `+=` and `<<`. Including some code where you can prove the difference in performance.
 
-
 #### First implementation
 
 Let's recap what we've just learned:
@@ -247,7 +246,7 @@ I'd like to use this refactoring session to talk about blocks again...
 
 ##### Bracket Blocks
 
-When a block contains just a single instruction, it's usual to use `{` brackets `}` to delimiter the block, like this:
+When a block contains just a single instruction, it's usual between Rubyists to use `{` brackets `}` to delimiter the block, like this:
 
 ```ruby
 5.times { puts "Learn Ruby with TDD" }
@@ -293,7 +292,6 @@ end
 ```
 
 The test should now confirm this code is working as expected, and then we're done with this feature (remember to commit your changes).
-
 
 ## A bug report arrives
 
@@ -345,7 +343,7 @@ We expect the borders to be as long as the longest line, then let's write a test
 
 ```ruby
 # ...
-class TestStringDecorator < Minitest::Test
+class StringDecoratorTest < Minitest::Test
   # ...
   
   def test_banner_with_multiple_lines
@@ -366,7 +364,7 @@ The test should show this failure message:
 
 ```
   1) Failure:
-TestStringDecorator#test_banner_with_multiple_lines [string_decorator_test.rb:23]:
+StringDecoratorTest#test_banner_with_multiple_lines [string_decorator_test.rb:23]:
 --- expected
 +++ actual
 @@ -1,6 +1,6 @@
@@ -414,7 +412,6 @@ In each iteration the substring is stored in the `line` variable and we can use 
 
 That looks promising! 🙂
 
-
 #### Longest line
 
 Let's use what we've learned to check the longest line. Going back to our `string_decorator.rb`:
@@ -442,7 +439,7 @@ Running the test:
 
 ```
   1) Failure:
-TestBanner#test_banner_with_multiple_lines [banner_test.rb:25]:
+StringDecoratorTest#test_banner_with_multiple_lines [string_decorator_test.rb:25]:
 --- expected
 +++ actual
 @@ -1,6 +1,6 @@
@@ -568,7 +565,5 @@ We learned a good amount of things for such a simple functionality, didn't we? L
 The two first [Lehman's laws of software evolution](https://en.wikipedia.org/wiki/Lehman's_laws_of_software_evolution).
 
 > **Continuing Change**: A system must be continually adapted or it becomes progressively less satisfactory.
-> 
+>
 > **Increasing Complexity**: As a system evolves, its complexity increases unless work is done to maintain or reduce it.
-
-
