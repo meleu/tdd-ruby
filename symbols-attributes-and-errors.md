@@ -34,7 +34,7 @@ Maybe we can think in more requirements later, but with this short list of requi
 
 ### Write the test first
 
-From that list, let's pick "a wallet starts with zero balance" and write a test for it:
+Let's create a `wallet_test.rb` file, and, from that list, pick "a wallet starts with zero balance" and write a test for it:
 
 ```ruby
 require "minitest/autorun"
@@ -138,7 +138,7 @@ So, our `#balance` method can be entirely replaced with this line:
 attr_reader :balance
 ```
 
-This single line is enough to express that "the class has an instance variable called `@balance` and you get it's value by calling the `#balance` method."
+This single line is enough to express that "the class has an instance variable called `@balance` and a public method called `#balance` that returns its value."
 
 It's usual to put this line as one of the first ones in the class's definition. That's so the future programmer reading the code can be aware of the class's attributes right away. Our `Wallet` class now looks like this:
 
@@ -374,7 +374,7 @@ Let's start an `irb` session and raise some errors on purpose:
 ```ruby
 # IRB SESSION
 
-# reference to an undefined indentifier
+# reference to an undefined identifier
 ##############################################
 > my_var = this_is_an_unknown_identifier
 # (irb):1:in '<main>': undefined local variable or method 'this_is_an_unknown_identifier' for main (NameError)
