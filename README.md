@@ -46,10 +46,10 @@ If I used "real world problems", we would need to spend brain power understandin
 
 ## Who this is for
 
-- People who are interested in picking up Ruby.
+- People who wrote some code (any language) and are interested in picking up Ruby.
 - People who already know some Ruby but want to explore testing more.
 
-I assume you already wrote some code (any language) and understand the basic concepts of algorithms.
+I assume you understand the basic concepts of algorithms.
 
 It's also expected that you're comfortable using the terminal (or at least not scared to use it).
 
