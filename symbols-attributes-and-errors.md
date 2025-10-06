@@ -675,7 +675,7 @@ Let's mark the last item from our todo list as done and wrap up this chapter.
 > - [x] a withdraw with an amount greater than the current balance must result in an error
 > - [x] withdraw when there's no funds must raise a specific error
 
-## Exercises
+## Handling Edge Cases
 
 Here are some ideas of scenarios for you to write tests and implement:
 
