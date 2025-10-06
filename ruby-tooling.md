@@ -30,7 +30,7 @@ Just keep in mind that the principles you'll learn here, are easily applicable w
 
 ## Linter and Formatter
 
-[RuboCop](https://rubocop.org) and [StandardRB](https://github.com/standardrb/standard) are two popular linters and formatters fro Ruby. I recommend StandardRB, as it's simpler and has less things to configure.
+[RuboCop](https://rubocop.org) and [StandardRB](https://github.com/standardrb/standard) are two popular linters and formatters for Ruby. I recommend StandardRB, as it's simpler and has less things to configure.
 
 If you have one of these linters and formatters configured in your editor, just be mindful that it can sometimes change your code in a way you don't want (e.g.: delete a variable that you don't use *yet*).
 
@@ -65,7 +65,7 @@ In order to use the Interactive Ruby Shell, type `irb` in your terminal. You sho
 ```
 $ irb
 
-irb(main):001:0> 
+irb(main):001> 
 ```
 
 This is the `irb` prompt, where you can type Ruby code and see the results.
@@ -110,7 +110,6 @@ It has the official documentation for the Ruby language and we're going to use i
 A good tip about the official documentation is how to use the Search tool. When you know the class and the method you're looking for, you search by `ClassName#method_name`. This leads you to where you want. This notation is also frequently used in the Ruby literature.
 
 Even when not prefixed with the class name, the `#` symbol used as a prefix implies that we're talking about a method. Example: `#puts`.
-
 
 ## Wrapping up
 

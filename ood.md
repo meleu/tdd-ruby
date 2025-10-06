@@ -1,6 +1,3 @@
----
-dg-publish: false
----
 # Object-Oriented Design
 
 > **NOTE**:
@@ -108,7 +105,6 @@ If you are coming from another OOP language, you're probably used to use the ter
 When an object receives a message, it looks into its own class for a corresponding method. If found, the method is invoked, if not, an exception is raised (but that is a topic for a later chapter).
 
 ## Key Concepts
-
 
 In this chapter we learned that Software Design is basically the way we organize our code.
 

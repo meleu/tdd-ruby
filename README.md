@@ -6,6 +6,8 @@ This book aims to teach you **Ruby** and **Test-Driven Development**.
 
 Since we use Ruby, it's inevitable that we also talk about **Object-Oriented Programming** (OOP). Also, as we use TDD, it's inevitable that we're going to talk about **Software Design**.
 
+Note: in this book we use Minitest as the testing framework.
+
 ## Why?
 
 ### Why Ruby?

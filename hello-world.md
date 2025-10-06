@@ -522,7 +522,7 @@ Expected: "Hola, Juan"
 Good, now we have a failing test output with a clear direction about what must be done to make it pass. It's expecting a greeting with `Hola` and our code is greeting with `Hello`, so let's fix our `#hello`:
 
 ```ruby
-def hello(name = 'world')
+def hello(name = 'World')
   if @language == 'spanish'
     greeting = 'Hola'
   else
@@ -566,7 +566,7 @@ Expected: "Bonjour, Jean"
 Then let's write enough code to make the test pass.
 
 ```ruby
-def hello(name = 'world')
+def hello(name = 'World')
   if @language == 'spanish'
     greeting = 'Hola'
   elsif @language == 'french'
@@ -584,7 +584,7 @@ The tests should pass now.
 Time for _refactoring_. Let's take this opportunity to learn how to use the `case` statement.
 
 ```ruby
-def hello(name = 'world')
+def hello(name = 'World')
   case @language
   when 'spanish'
     greeting = 'Hola'
@@ -604,7 +604,7 @@ The code is working as expected, but I'm starting to feel like `#hello` is accum
 
 I want to create a new method just to handle the multilingual greeting. As such method is not intended to be called from the "outside world", but only from the `#hello` method, we can define it as a **private method**.
 
-A private method can only be used internally by the object. Any attempt to call it from outside will result in an error. For example, if you try to execute `greeter.greeting`, you'll get an error.
+A private method can only be used internally by the object. An attempt to call it from outside will usually result in an error. For example, if you try to execute `greeter.greeting`, you'll get an error.
 
 Alright, with the `#greeting` method our `greeter.rb` becomes like this:
 
