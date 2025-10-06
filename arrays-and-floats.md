@@ -63,11 +63,11 @@ As we have more than one step to solve this problem, we better write down what w
 > - [ ] calculate the sum
 > - [ ] calculate the average
 
-Good. We can now start the project:
+Good, we can now start the project. Let's call it Statistics Calculator:
 
 ```bash
-mkdir average
-cd average
+mkdir statistics_calculator
+cd statistics_calculator
 ```
 
 ### Step 1: Calculate the sum
@@ -84,7 +84,7 @@ Let's call the class as `StatisticsCalculator` and the method would be simply `#
 require "minitest/autorun"
 require_relative "statistics_calculator"
 
-class TestStatisticsCalculator < Minitest::Test
+class StatisticsCalculatorTest < Minitest::Test
   def test_sum_numbers_in_array
     numbers = [1, 2, 3]
     expected = 6
@@ -97,7 +97,7 @@ end
 Run the test and check the error.
 
 #### Write the minimal amount of code for the test to run
- 
+
 Solve the error messages until the test **fails** without **errors**. By doing this you should now have a file named `statistics_calculator.rb` with contents like this:
 
 ```ruby
@@ -145,7 +145,7 @@ The documentation says:
 > array.each {|element| sum += element }
 > sum
 > ```
-> 
+>
 > For example, `[e1, e2, e3].sum` returns `init + e1 + e2 + e3`.
 
 😳 This looks **a lot** like the code we just wrote for our `sum` function!
@@ -166,12 +166,12 @@ In this case my refactoring is: **delete the function and the test!**
 
 We must keep in mind that "**code is liability**". Each line of code in the repository has a cost and needs a reason to be kept there.
 
-In this case I see no value in keeping a `sum` function just to be wrapper around the `Array#sum` call. 
+In this case I see no value in keeping a `sum` function just to be wrapper around the `Array#sum` call.
 
 The same decision also applies to the tests. The main benefit of keeping our tests is to give us confidence. If I were doubtful about the `Array#sum` behavior, I would keep a test to validate it, but I trust the Ruby language maintainers (otherwise I wouldn't build serious web applications on top of this technology). I also believe they have tests for `Array#sum`. Therefore I'll delegate to them the responsibility to keep it working.
 
 So, the result of our refactoring is an empty class in `statistics_calculator.rb` file and an empty test class in `statistics_calculator_test.rb`, like this:
- 
+
 ```ruby
 # statistics_calculator.rb
 class StatisticsCalculator
@@ -181,9 +181,9 @@ end
 ```ruby
 # statistics_calculator_test.rb
 require 'minitest/autorun'
-require_relative 'average'
+require_relative 'statistics_calculator'
 
-class AverageTest < Minitest::Test
+class StatisticsCalculatorTest < Minitest::Test
 end
 ```
 
@@ -191,7 +191,6 @@ Our TODO list is now like this:
 
 > - [x] calculate the sum
 > - [ ] calculate the average
-
 
 ### Step 2: Calculate the average
 
@@ -207,10 +206,10 @@ This seems to be a good example for our first test.
 
 #### Write the test first
 
-Put this in your `average_test.rb`:
+Put this in your `statistics_calculator_test.rb`:
 
 ```ruby
-class TestStatisticsCalculator < Minitest::Test
+class StatisticsCalculatorTest < Minitest::Test
   def test_average
     numbers = [1, 2, 3, 4]
     expected = 2.5
@@ -242,7 +241,7 @@ Now your test should be failing with no errors, and with a clear message like th
 
 ```
   1) Failure:
-TestStatisticsCalculator#test_average [statistics_calculator_test.rb:8]:
+StatisticsCalculatorTest#test_average [statistics_calculator_test.rb:8]:
 Given: [1, 2, 3, 4].
 Expected: 2.5
   Actual: nil
@@ -279,7 +278,7 @@ Test failure message:
 
 ```
 Failure:
-AverageTest#test_simple_average [average_test.rb:9]:
+StatisticsCalculatorTest#test_average [statistics_calculator_test.rb:9]:
 Given: [1, 2, 3, 4].
 Expected: 2.5
   Actual: 2
@@ -383,7 +382,7 @@ The numbers are 2, 3, and 5; then we have
 If we want to write a test for this case, how many decimal digits should we use? Let's see what happens with just 3 decimals:
 
 ```ruby
-class TestStatisticsCalculator < Minitest::Test
+class StatisticsCalculatorTest < Minitest::Test
   # ...
   
   def test_average_with_repeating_decimal
@@ -399,7 +398,7 @@ The tests results in a failure like this:
 
 ```
   1) Failure:
-TestStatisticsCalculator#test_average_with_repeating_decimal [statistics_calculator_test.rb:16]:
+StatisticsCalculatorTest#test_average_with_repeating_decimal [statistics_calculator_test.rb:16]:
 Given: [2, 3, 5].
 Expected: 3.333
   Actual: 3.3333333333333335
@@ -408,7 +407,7 @@ Expected: 3.333
 As we can see, creating an assertion with Floats is not that straightforward. Fortunately we have an specific assertion to deal with Floats: `assert_in_delta`. And [it's documentation](https://ruby-doc.org/current/gems/minitest/Minitest/Assertions.html#method-i-assert_in_delta) says:
 
 > **assert_in_delta(exp, act, delta = 0.001, msg = nil)**
-> 
+>
 > For comparing Floats. Fails unless `exp` and `act` are within `delta` of each other.
 
 Explaining in another way, it checks if the expected and the actual values are within `delta` difference of each other.
@@ -416,7 +415,7 @@ Explaining in another way, it checks if the expected and the actual values are w
 Let's rewrite our test using this new assertion:
 
 ```ruby
-class TestStatisticsCalculator < Minitest::Test
+class StatisticsCalculatorTest < Minitest::Test
   # ...
   
   def test_average_with_repeating_decimal
@@ -438,7 +437,6 @@ This test was added just to learn how to deal with repeating decimals and didn't
 
 If you're doing version control, that's a good time to commit your changes.
 
-
 ## Other useful Array methods
 
 As you may have noticed, Ruby’s standard library comes with a lot of useful solutions (for example, Array#sum).
@@ -451,7 +449,7 @@ Other quite handy Array methods provided by default are:
 - `#min`, `#max` – returns the minimum/maximum valued element in the array.
 - `#minmax` – returns a new 2-element array containing the minimum and maximum values.
 
-This is a short list of the Array’s methods. Be sure to spend some time reading [the Array class documentation](https://ruby-doc.org/current/Array.html); it’s a worthwhile investment of your time. 
+This is a short list of the Array’s methods. Be sure to spend some time reading [the Array class documentation](https://ruby-doc.org/current/Array.html); it’s a worthwhile investment of your time.
 
 ## Key Concepts
 
